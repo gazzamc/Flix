@@ -8,8 +8,13 @@ from .models import SubPlan, Subscriber
 class SubscriberAdmin(admin.ModelAdmin):
     list_display = ('user', 'plan', 'subscription_date', 'subscription_end_date')
     ordering = ('user',)
-    search_fields = ('user', 'plan')
+    search_fields = ('user__username',)
 
 
-admin.site.register(SubPlan)
+class SubPlanAdmin(admin.ModelAdmin):
+    list_display = ('plan_name', 'plan_price')
+    ordering = ('plan_name',)
+
+
+admin.site.register(SubPlan, SubPlanAdmin)
 admin.site.register(Subscriber, SubscriberAdmin)
