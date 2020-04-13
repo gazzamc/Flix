@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'accounts',
     'checkout',
     'content',
+
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [

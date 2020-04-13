@@ -18,7 +18,7 @@ class Video(models.Model):
     imdb_link = models.CharField(max_length=100)
     tags = TaggableManager()
     image = models.ImageField(upload_to='media/img')
-    views = models.IntegerField()
+    views = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
