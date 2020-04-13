@@ -5,17 +5,21 @@ from django.contrib.auth.models import User
 from .models import Subscriber
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
-@login_required
+
 def index(request):
     """ Return the index.html if subscription valid otherwise redirect to plans page"""
 
-    # Check if subscription exists using user id
-    # https://stackoverflow.com/questions/12615154/how-to-get-the-currently-logged-in-users-user-id-in-django
-    subscriber = Subscriber.objects.filter(user=request.user.id)
-    if subscriber:
-        return render(request, 'index.html')
+    # Check if user is logged in
+    if request.user.is_authenticated:
+        # Check if subscription exists using user id
+        # https://stackoverflow.com/questions/12615154/how-to-get-the-currently-logged-in-users-user-id-in-django
+        subscriber = Subscriber.objects.filter(user=request.user.id)
+        if subscriber:
+            return render(request, 'home.html')
+        else:
+            return redirect(reverse('plans'))
     else:
-        return redirect(reverse('plans'))
+        return render(request, 'index.html')
 
 @login_required
 def logout(request):
