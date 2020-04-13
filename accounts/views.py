@@ -16,7 +16,7 @@ def index(request):
         # https://stackoverflow.com/questions/12615154/how-to-get-the-currently-logged-in-users-user-id-in-django
         subscriber = Subscriber.objects.filter(user=request.user.id)
         if subscriber:
-            return home_page(request)
+            return content_view(request)
         else:
             return redirect(reverse('plans'))
     else:
