@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Subscriber
 from accounts.forms import UserLoginForm, UserRegistrationForm
-from content.views import home_page
+from content.views import content_view
 
 
 def index(request):
