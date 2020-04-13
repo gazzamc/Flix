@@ -40,11 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Custom Apps
     'django_forms_bootstrap',
+    'taggit',
+    # Custom Apps
     'accounts',
     'checkout',
+    'content',
 ]
 
 MIDDLEWARE = [
