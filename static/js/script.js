@@ -1,27 +1,28 @@
-$(".column" ).hover( showControls, hideControls);
+$( document ).ready(function() {
+    $(".column").hover( showControls, hideControls);
 
-$(".fas").click(function(){
-    let curScroll = $('.column').scrollLeft();
+    $(".fas").click(function(){
+        let id = $(this).parent().attr('id')
+        let curScroll = $('#' + id + ".column").scrollLeft();
+        console.log(id);
 
-    if($(this).hasClass("fa-angle-left")){
-        $('.column').scrollLeft(curScroll - 50);
-    } else{
-        $('.column').scrollLeft(curScroll + 50);
-    }
+        if($(this).hasClass("fa-angle-left")){
+            $('#' + id + ".column").scrollLeft(curScroll - 50);
+        } else{
+            $('#' + id + ".column").scrollLeft(curScroll + 50);
+        }
+    });
 });
 
 function showControls(){
-    /* Add Arrows */
-    if($(".fas.fa-angle-left").length == 0){
-        $('.column').append('<i class="fas fa-angle-left"></i>');
-        $('.column').append('<i class="fas fa-angle-right"></i>');
-    };
+    let column = $(this).attr("id");
+    /* show Arrows */
+    $('#' + column + ' .fas.fa-angle-left').show();
+    $('#' + column + ' .fas.fa-angle-right').show();
 }
 
 function hideControls(){
-    /* Remove Arrows */
-    if($(".fas.fa-angle-left").length == 1){
-        $('.fas.fa-angle-left').remove();
-        $('.fas.fa-angle-right').remove();
-    };
+    /* hide Arrows */
+    $('.fas.fa-angle-left').hide();
+    $('.fas.fa-angle-right').hide();
 }
