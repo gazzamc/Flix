@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # Custom Apps
     'django_forms_bootstrap',
     'accounts',
+    'checkout',
 ]
 
 MIDDLEWARE = [

@@ -2,12 +2,20 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import Subscriber
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
-
+@login_required
 def index(request):
-    """Return the index.html file"""
-    return render(request,  'index.html')
+    """ Return the index.html if subscription valid otherwise redirect to plans page"""
+
+    # Check if subscription exists using user id
+    # https://stackoverflow.com/questions/12615154/how-to-get-the-currently-logged-in-users-user-id-in-django
+    subscriber = Subscriber.objects.filter(user=request.user.id)
+    if subscriber:
+        return render(request, 'index.html')
+    else:
+        return redirect(reverse('plans'))
 
 @login_required
 def logout(request):
@@ -62,7 +70,7 @@ def registration(request):
     return render(request, 'registration.html', {
         "registration_form": registration_form})
 
-
+@login_required
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
