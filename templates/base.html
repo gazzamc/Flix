@@ -38,7 +38,9 @@
     <div>
         {% for message in messages %} {{ message }} {% endfor %}
     </div>
-    {% endif %} {% block content %}{% endblock %}
+    {% endif %} 
+    {% block content %}
+    {% endblock %}
 </body>
 
 </html>

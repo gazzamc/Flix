@@ -1,0 +1,9 @@
+{% extends 'base.html' %} 
+{% block page_title %}{{ slug }}{% endblock %} 
+{% block page_heading %}Video{% endblock %}
+
+{% block content %}
+    <h2>Name: {{ title }}</h2>
+    <p>youtube: {{ youtube_link }}</p>
+    <p>Desc: {{ description }}</p>
+{% endblock %}

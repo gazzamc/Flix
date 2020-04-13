@@ -1,0 +1,11 @@
+{% extends 'base.html' %} 
+{% block page_title %}Home{% endblock %} 
+{% block page_heading %}Home page{% endblock %}
+
+{% block content %}
+    <p>{{ test }}</p>
+
+    {% for category in categories %}
+        <h3>{{ category }}</h3>
+    {% endfor %}
+{% endblock %}

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Subscriber
 from accounts.forms import UserLoginForm, UserRegistrationForm
+from content.views import home_page
 
 
 def index(request):
@@ -15,7 +16,7 @@ def index(request):
         # https://stackoverflow.com/questions/12615154/how-to-get-the-currently-logged-in-users-user-id-in-django
         subscriber = Subscriber.objects.filter(user=request.user.id)
         if subscriber:
-            return render(request, 'home.html')
+            return home_page(request)
         else:
             return redirect(reverse('plans'))
     else:

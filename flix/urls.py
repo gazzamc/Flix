@@ -18,10 +18,12 @@ from django.contrib import admin
 from accounts.views import index
 from accounts import urls as accounts_urls
 from checkout import urls as checkout_urls
+from content import urls as content_urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),
+    url(r'^content/', include(content_urls)),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^checkout/', include(checkout_urls))
 ]
