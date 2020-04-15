@@ -28,7 +28,7 @@
             <div class="col-12">
                 <h4>{{ category }}</h4>
                 <div class="column" id="{{ category }}">
-                    {% for video in videos%}
+                    {% for video in videos %}
                         {% if video.category == category %}
                             <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" alt="{{ video.slug }}-cover"></a>
                         {% endif %}
