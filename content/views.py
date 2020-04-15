@@ -9,10 +9,19 @@ from accounts.models import Subscriber
 def content_view(request):
     """ Display all video content """
 
+    """ Get Featured Content """
+    featured_vid = Video.objects.get(featured=True)
     categories = Categorie.objects.all()
+    all_videos = Video.objects.all()
+
     content = {
+        "videos": all_videos,
         "categories": categories,
-        "test": "This is a test"
+        "video_url": get_video_url(featured_vid.youtube_link),
+        "video_title": featured_vid.title,
+        "video_desc": featured_vid.description,
+        "video_img": featured_vid.image_landscape,
+        "video_link": featured_vid.slug,
     }
 
     return render(request, 'home.html', content)

@@ -2,6 +2,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.db.models.signals import pre_save
 from utils.slug_gen import unique_slug_generator
+from django.db import transaction
 
 
 class Categorie(models.Model):
@@ -20,14 +21,26 @@ class Video(models.Model):
     category = models.ForeignKey(Categorie, on_delete=models.CASCADE)
     imdb_link = models.CharField(max_length=100)
     tags = TaggableManager()
-    image = models.ImageField(upload_to='media/img')
+    image_cover = models.ImageField(upload_to='img')
+    image_landscape = models.ImageField(upload_to='img')
     views = models.IntegerField(default=0)
+    featured = models.BooleanField()
+
+    """ https://stackoverflow.com/questions/1455126/unique-booleanfield-value-in-django """
+    def save(self, *args, **kwargs):
+        if not self.featured:
+            return super(Video, self).save(*args, **kwargs)
+        with transaction.atomic():
+            Video.objects.filter(
+                featured=True).update(featured=False)
+            return super(Video, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
 
 def slug_generator(sender, instance, *args, **kwargs):
+    """ Generate unique slug """
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 

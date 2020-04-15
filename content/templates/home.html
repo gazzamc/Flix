@@ -1,38 +1,38 @@
 {% extends 'base.html' %} 
 {% load staticfiles %}
 {% block page_title %}Home{% endblock %}
-
 {% block content %}
+<!-- Jumbotron/ Featured -->
+<div class="container-fluid mb-3" id="featured-top" style="background: url('{{ video_img }}') no-repeat center center fixed; background-size: cover; z-index: -2;">
+    <div class="row">
+        <div class="col-12 p-0">
+            <div class="jumbotron">
+                <div class="opacityShade">
+                    <h1 class="page-header">{{ video_title }}</h1>
+                    <p class="lead">{{ video_desc }}</p>
+                    <a href="/content/{{ video_link }}" class="btn btn-primary btn-lg">Watch Now!</a>
+                </div>
+                <video id="jumboVid" controls muted autoplay>
+                    <source src="{{ video_url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <i class="fas fa-play"></i>
+        </div>
+    </div>
+</div>
+<!-- Content/Genres -->
 <div class="container-fluid">
     <div class="row">
             {% for category in categories %}
             <div class="col-12">
                 <h4>{{ category }}</h4>
                 <div class="column" id="{{ category }}">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
-                    <img src="/media/img/blackaf.jpg" alt="Card image cap">
+                    {% for video in videos%}
+                        {% if video.category == category %}
+                            <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" alt="{{ video.slug }}-cover"></a>
+                        {% endif %}
+                    {% endfor %}   
                     <i class="fas fa-angle-left" style="display: none"></i>
                     <i class="fas fa-angle-right" style="display: none"></i>
                 </div>

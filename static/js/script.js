@@ -1,6 +1,11 @@
 $( document ).ready(function() {
+    /* If autoplay enabled focus video */
+    if(!$("video").paused){
+        vidInFocus(true);
+    }
+
     /* Hides/Shows Controls when mouse hovers over column */
-    $(".column").hover( showControls, hideControls);
+    $(".column").hover(showControls, hideControls);
 
     /* Moves Items when clicking arrow buttons */
     $(".fas").click(function(){
@@ -13,12 +18,29 @@ $( document ).ready(function() {
             $('#' + id + ".column").scrollLeft(curScroll + 50);
         }
     });
-});
 
+    /* Changes opacity of video in jumbotron. */
+    $("video, .fa-play").click(function(){
+        vidInFocus(true);
+
+        if($(this).hasClass("fa-play")){
+            $("video").trigger("play");
+        }
+    });
+
+    /* If video is playing pause on scroll */
+    $(window).scroll(function(){
+        video = $("video");
+        video.trigger('pause');
+        vidInFocus(false);
+        /* PIP when scrolling */
+        /* video.trigger('requestPictureInPicture'); */
+    });
+});
 /**
  * 
  * @param {jQuery Object} item 
- * Checks if item is is visible om screen
+ * Checks if item is visible on screen
  */
 function isVisible(item){
     let result = false;
@@ -40,7 +62,7 @@ function showControls(){
 
     $("#" + id + ".column img").each(function(item){
         if(!isVisible($(this))){
-            /* show Arrows */
+            /* Show arrows */
             if(curScroll > 0){
                 $('#' + id + ' .fas.fa-angle-left').show();
                 $('#' + id + ' .fas.fa-angle-right').show();
@@ -55,7 +77,32 @@ function showControls(){
  * Hides controls.
  */
 function hideControls(){
-    /* hide Arrows */
+    /* Hide arrows */
     $('.fas.fa-angle-left').hide();
     $('.fas.fa-angle-right').hide();
+}
+
+/**
+ * Change opacity of featured video.
+ */
+function vidInFocus(bool){
+    if(bool){
+        $("video#jumboVid").css("opacity", 1);
+        hidePlayBtn(true);  
+    } else{
+        $("video#jumboVid").css("opacity", 0);
+        $("video").trigger('pause');
+        hidePlayBtn(false);
+    }
+}
+
+/**
+ * Change opacity of featured video.
+ */
+function hidePlayBtn(bool){
+    if(bool){
+        $(".fa-play").css("display", "none");    
+    } else{
+        $(".fa-play").css("display", "initial");
+    }
 }

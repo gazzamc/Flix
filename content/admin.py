@@ -9,7 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'views')
+    list_display = ('title', 'category', 'views', 'featured')
     ordering = ('title',)
     search_fields = ('title',)
 
