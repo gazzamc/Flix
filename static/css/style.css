@@ -1,3 +1,8 @@
+body{
+    background-color: #000;
+    color: #fff;
+}
+ 
 /*  Nav */
 /* Fix dropdown going off screen */
 .dropdown-menu{
@@ -37,11 +42,17 @@
     padding-left: 10%;
     top: 30%;
     color: #fff;
+    font-size: 4em;
+}
+
+.jumbotron .lead{
+    font-size: 1.5em;
+    width: 30%;
 }
 
 .jumbotron .btn.btn-primary.btn-lg{
     position: absolute;
-    left: 15%;
+    left: 10%;
     bottom: 13%;
 }
 
@@ -51,12 +62,10 @@
 
 /* Opacity */
  .opacityShade {
-     position: absolute;
-     background-color: #000;
-     opacity: 0.9;
-     height:inherit;
-     width: 100%;
-     z-index: 1;
+    position: absolute;
+    height:inherit;
+    width: 100%;
+    z-index: 1;
 }
  .elementOverShade {
      position: relative;
@@ -109,4 +118,12 @@
 
 .fas.fa-angle-right{
     left: 97%;
+}
+
+
+/* Video Page */
+
+#video-content{
+    width: 90%;
+    height: auto;
 }

@@ -51,6 +51,8 @@ def video_view(request, slug):
             "slug": video.slug,
             "youtube_link": get_video_url(video.youtube_link),
             "description": video.description,
+            "genre": video.category,
+            "video_img": video.image_landscape,
         }
 
         return render(request, 'video.html', content)
