@@ -1,7 +1,36 @@
 {% extends 'base.html' %}
-{% block page_title %}{{ user }}'s Profile{% endblock %}
-{% block page_heading %}{{ user }}'s Profile{% endblock %}
+{% block page_title %}Profile{% endblock %}
 
 {% block content %}
-<p>{{ profile.email }}</p>
+    <div class="container mt-5" id="profile">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mt-3">Profile</h2>
+                <hr>
+            </div>
+            <div class="col-12">
+                <div class="col-12 profile-info">
+                    <p><span class="profile-subheading">Name: </span>{{ user.get_full_name }}</p>
+                </div>
+                <hr>
+                <div class="col-12 profile-info">
+                    <p><span class="profile-subheading">Username: </span>{{ user.username }}</p>
+                </div>
+                <hr>
+                <div class="col-12 profile-info">
+                    <p><span class="profile-subheading">Email: </span>{{ user.email }}</p>
+                </div>
+                <hr>
+                <div class="col-12 profile-info">
+                    <p><span class="profile-subheading">Joined: </span>{{ user.date_joined|date:"d-m-Y" }}</p>
+                </div>
+                <hr>
+                <div class="col-12 profile-info mb-5">
+                    <p><span class="profile-subheading">Subscription: </span>{{ user_plan }}</p>
+                    <a href="{% url 'plans' %}">Change</a>
+                    <p>Next billing date: {{ next_billing|date:"d-m-Y" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

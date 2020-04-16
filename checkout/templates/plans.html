@@ -36,9 +36,9 @@
                                 {% csrf_token %}
                                 <input type='hidden' name="plan_type" value="{{ plan.plan_name }}">
 
-                                {% if curr_plan == plan %}
+                                {% if user_plan == plan %}
                                     <input type="submit" value="Subscribed" class="btn btn-primary btn-lg" disabled>
-                                {% elif curr_plan == None %}
+                                {% elif user_plan == None %}
                                     <input type="submit" value="Subscribe" class="btn btn-primary btn-lg">
                                 {% else %}
                                     {% if plan.plan_name == "pro" %}

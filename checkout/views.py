@@ -21,7 +21,7 @@ def plans(request):
 
     context = {
         'plans': plans,
-        'curr_plan': user_plan
+        'user_plan': user_plan
     }
 
     return render(request, 'plans.html', context)

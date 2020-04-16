@@ -78,5 +78,25 @@ def registration(request):
 @login_required
 def user_profile(request):
     """The user's profile page"""
+
+    try:
+        subscriber = Subscriber.objects.get(user=request.user.id)
+    except Subscriber.DoesNotExist:
+        subscriber = None
+
+    if subscriber:
+        user_plan = subscriber.plan
+        next_bill_date = subscriber.subscription_end_date
+        print(next_bill_date)
+    else:
+        user_plan = None
+        next_bill_date = None
+
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+
+    context = {
+        "profile": user,
+        "user_plan": user_plan,
+        "next_billing": next_bill_date
+    }
+    return render(request, 'profile.html', context)

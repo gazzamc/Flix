@@ -156,3 +156,30 @@ body{
 .card-title{
     font-size: 2em;
 }
+
+/* profile */
+
+#profile{
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    text-align: justify;
+}
+
+.profile-subheading{
+    font-size: 1.3em;
+}
+
+.profile-info {
+    padding: 1% 0% 1% 42%;
+}
+
+
+
+/* footer */
+footer p{ 
+    position: relative;
+    bottom: 0%;
+    width: 100vw;
+    text-align: center;
+}
