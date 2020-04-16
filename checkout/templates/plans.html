@@ -1,3 +1,58 @@
 {% extends 'base.html' %} 
 {% block page_title %}Plans{% endblock %} 
-{% block page_heading %}Plans{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mt-5">Plans:</h1>
+            <div class="card-deck mt-5">
+                {% for plan in plans %}
+                    <div class="card">
+                        <div class="card-body">
+                            {% if plan.plan_name == "basic" %}
+                                <i class="fas fa-user"></i>
+                                <h5 class="card-title text-capitalize">{{ plan.plan_name }}</h5>
+                                <p class="card-text">For the casual viewer</p>
+                            {% else %}
+                                <i class="fas fa-user-tie"></i>  
+                                <h5 class="card-title text-capitalize">{{ plan.plan_name }}</h5>
+                                <p class="card-text">For the enthusiast viewer</p>  
+                            {% endif %}
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">&euro; {{ plan.plan_price }} /pm</li>
+
+                            {% if plan.plan_name == "basic" %}
+                                <li class="list-group-item">720P Available</li>
+                            {% else %}
+                                <li class="list-group-item">Full HD Available</li>       
+                            {% endif %}
+                                <li class="list-group-item">Watch Anywhere</li>
+                                <li class="list-group-item">Cancel at any time</li>
+                                <li class="list-group-item">Unlimited films and TV programmes</li>
+                        </ul>
+                        <div class="card-body">
+                            <form action="{% url 'payment' %}" method="post">
+                                {% csrf_token %}
+                                <input type='hidden' name="plan_type" value="{{ plan.plan_name }}">
+
+                                {% if curr_plan == plan %}
+                                    <input type="submit" value="Subscribed" class="btn btn-primary btn-lg" disabled>
+                                {% elif curr_plan == None %}
+                                    <input type="submit" value="Subscribe" class="btn btn-primary btn-lg">
+                                {% else %}
+                                    {% if plan.plan_name == "pro" %}
+                                        <input type="submit" value="Upgrade" class="btn btn-primary btn-lg">
+                                    {% else %}
+                                        <input type="submit" value="Downgrade" class="btn btn-primary btn-lg">
+                                    {% endif %}
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

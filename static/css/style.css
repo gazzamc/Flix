@@ -137,8 +137,22 @@ body{
 
 
 /* Video Page */
-
 #video-content{
     width: 90%;
     height: auto;
+}
+
+/* Plans Page */
+
+.card-deck .card {
+    color: #000;
+    text-align: center;
+}
+
+.fa-user, .fa-user-tie{
+    font-size: 4em;
+}
+
+.card-title{
+    font-size: 2em;
 }
