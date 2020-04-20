@@ -174,12 +174,9 @@ body{
     padding: 1% 0% 1% 42%;
 }
 
-
-
 /* footer */
 footer p{ 
     position: relative;
     bottom: 0%;
-    width: 100vw;
     text-align: center;
 }

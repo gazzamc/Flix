@@ -87,7 +87,6 @@ def user_profile(request):
     if subscriber:
         user_plan = subscriber.plan
         next_bill_date = subscriber.subscription_end_date
-        print(next_bill_date)
     else:
         user_plan = None
         next_bill_date = None

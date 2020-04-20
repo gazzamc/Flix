@@ -17,6 +17,8 @@
 
     <!-- Custom CSS -->
 	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    {% block custom_css %}{% endblock %}
+    {% block head_js %}{% endblock %}
 </head>
 <body>
     <!-- Navigation -->
