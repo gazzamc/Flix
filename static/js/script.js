@@ -30,9 +30,18 @@ $( document ).ready(function() {
 
     /* If video is playing pause on scroll */
     $(window).scroll(function(){
-        video = $("video");
-        video.trigger('pause');
-        vidInFocus(false);
+        /* Navigation Bar */
+        if($(window).scrollTop() > 300){
+            $("nav").removeClass("showNavBar");
+            
+            /* Featured Video */
+            video = $("video");
+            video.trigger('unload');
+            vidInFocus(false);
+        }else{
+            $("nav").addClass("showNavBar");
+        }
+
         /* PIP when scrolling */
         /* video.trigger('requestPictureInPicture'); */
     });

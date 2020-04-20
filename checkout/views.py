@@ -132,6 +132,7 @@ def checkout(request):
 
                 if subscription.created:
                     """ Get Dates for Subscription """
+                    """ https://stackoverflow.com/questions/12589764/unix-timestamp-to-datetime-in-django-with-timezone """
                     startDate = make_aware(datetime.fromtimestamp(subscription.current_period_start))
                     endDate = make_aware(datetime.fromtimestamp(subscription.current_period_end))
 
@@ -204,6 +205,7 @@ def cancel_sub(request):
             'plan': plan,
         }
 
+        """ https://stackoverflow.com/questions/8571383/how-to-identify-button-click-event-of-template-page-in-view-page-of-django """
         if request.POST.get('no'):
             return redirect(reverse('profile'))
         elif request.POST.get('yes'):

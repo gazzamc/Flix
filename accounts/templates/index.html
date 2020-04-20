@@ -1,10 +1,20 @@
 {% extends 'base.html' %} 
+{% load staticfiles %}
 {% block page_title %}Watch Anywhere!{% endblock %} 
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
+{% endblock %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <p>Landing Page</p>
+            <div class="jumbotron">
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
+                    <input id="email" type="email" placeholder="email@example.com" required/><br>
+                    <input class="btn btn-primary btn-lg" type="submit" value="Subscribe Today!"/>
+                </form>
+            </div>
         </div>
     </div>
 </div>

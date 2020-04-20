@@ -1,6 +1,9 @@
 {% extends 'base.html' %} 
 {% load staticfiles %}
 {% block page_title %}Home{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+{% endblock %}
 {% block content %}
 <!-- Jumbotron/ Featured -->
 <div class="container-fluid mb-3" id="featured-top" style="background: linear-gradient(
@@ -15,7 +18,7 @@
                     <p class="lead">{{ video_desc }}</p>
                     <a href="/content/{{ video_link }}" class="btn btn-primary btn-lg">Watch Now!</a>
                 </div>
-                <video id="jumboVid" controls muted autoplay>
+                <video id="jumboVid" muted autoplay>
                     <source src="{{ video_url }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>

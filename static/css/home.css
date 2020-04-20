@@ -1,0 +1,107 @@
+/* jumbotron */
+#jumboVid{
+    position: relative;
+    height: inherit;
+    width: 99vw;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    object-fit: cover;
+}
+
+/* play btn */
+.fa-play {
+    position: absolute;
+    right: 30%;
+    top: 45%;
+    font-size: 5em;
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.jumbotron{
+    height: 70vh;
+    background-color: rgba(0,0,0, 0.0);
+    padding: 0;
+    margin: 0;
+}
+
+.jumbotron h1, .jumbotron .lead{
+    position: relative;
+    padding-left: 10%;
+    top: 30%;
+    color: #fff;
+    font-size: 4em;
+}
+
+.jumbotron .lead{
+    font-size: 1.5em;
+    width: 30%;
+}
+
+.jumbotron .btn.btn-primary.btn-lg{
+    position: absolute;
+    left: 10%;
+    bottom: 30%;
+}
+
+/* Opacity */
+ .opacityShade {
+    position: absolute;
+    height:inherit;
+    width: 100%;
+    z-index: 1;
+}
+ .elementOverShade {
+     position: relative;
+     z-index: 10;
+}
+
+/* https://stackoverflow.com/questions/50320756/how-to-stop-3-images-side-by-side-inside-a-div-from-wrapping-to-the-next-line */
+.column {
+    /* display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; */
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    overflow: hidden;
+    padding: 1%;
+}
+
+.column a img{
+    height: auto;
+    width: 8%;
+    margin: 0.1%;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+.column a img:hover{
+    height: auto;
+    width: 10%;
+    margin: 0.1%;
+    flex-shrink: 0;
+    padding: 0;
+}
+
+/* Controls */
+
+.fas.fa-angle-left, .fas.fa-angle-right{
+    position: absolute;
+    left: 2%;
+    top: 50%;
+    font-size: 3em;
+    color: red;
+}
+
+.fas.fa-angle-right{
+    left: 97%;
+}

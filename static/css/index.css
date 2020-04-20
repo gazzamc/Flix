@@ -1,0 +1,43 @@
+/* jumbotron */
+
+.jumbotron{
+    height: 100vh;
+    padding: 0;
+    margin-top: 1%;
+    -webkit-box-shadow: inset 0px 1px 22px 16px rgba(0,0,0,0.46);
+    -moz-box-shadow: inset 0px 1px 22px 16px rgba(0,0,0,0.46);
+    box-shadow: inset 0px 1px 22px 16px rgba(0,0,0,0.46);
+}
+
+.jumbotron h1, .jumbotron .lead{
+    position: relative;
+    padding-left: 10%;
+    top: 30%;
+    color: #fff;
+    font-size: 4em;
+}
+
+.jumbotron .lead{
+    font-size: 1.5em;
+    width: 30%;
+}
+
+.jumbotron form{
+    position: absolute;
+    top: 70vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.jumbotron form .btn{
+    margin-top: 1%;
+}
+
+form input#email{
+    height: 5vh;
+    width: 30vw;
+    font-size: 2.5em;
+    text-align: center;
+}
