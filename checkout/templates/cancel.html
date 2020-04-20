@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+{% block page_title %}Cancel Subscription{% endblock %} 
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-9 offset-3">
+            <h2>Cancel Subscription</h2>
+            <p>User: {{ user_name }}</p>
+            <p>Subscription: {{ plan }}</p>
+
+            <p>Are you sure you want to cancel?</p>
+            <form action="{% url 'cancel-sub' %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="yes" name="yes" />
+                <input type="submit" value="no" name="no" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

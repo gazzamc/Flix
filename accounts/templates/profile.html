@@ -27,7 +27,12 @@
                 <hr>
                 <div class="col-12 profile-info mb-5">
                     <p><span class="profile-subheading">Subscription: </span>{{ user_plan }}</p>
-                    <a href="{% url 'plans' %}">Change</a>
+                        {% if user_plan != None %}
+                            <a href="{% url 'plans' %}">Change</a>
+                            <a href="{% url 'cancel-sub' %}">Cancel</a>
+                        {% else %}
+                            <a href="{% url 'plans' %}">Subscribe</a>
+                        {% endif %}
                     <p>Next billing date: {{ next_billing|date:"d-m-Y" }}</p>
                 </div>
             </div>

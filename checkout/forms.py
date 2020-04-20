@@ -1,5 +1,4 @@
 from django import forms
-from accounts.models import SubPlan, Subscriber
 
 
 class MakePaymentForm(forms.Form):

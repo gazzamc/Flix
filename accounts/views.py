@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from .models import Subscriber
 from accounts.forms import UserLoginForm, UserRegistrationForm
 from content.views import content_view
+from checkout.views import get_sub_next_bill_date
+from datetime import date
 
 
 def index(request):
@@ -86,7 +88,15 @@ def user_profile(request):
 
     if subscriber:
         user_plan = subscriber.plan
+
+        """ Check if next bill date valid, if not get new date """
+        todays_date = date.today()
         next_bill_date = subscriber.subscription_end_date
+
+        if next_bill_date < todays_date:
+            """ Get new date and update current subscription """
+            next_bill_date = get_sub_next_bill_date(request)
+
     else:
         user_plan = None
         next_bill_date = None

@@ -46,18 +46,18 @@ def plans(request):
 @login_required
 def checkout(request):
     """Checkout page"""
+
+    plan_type = request.session.get('plan_type')
+    plan_price = request.session.get('plan_price')
+
     if request.method == "POST":
         payment_form = MakePaymentForm(request.POST)
 
         if payment_form.is_valid():
-
-            plan_type = request.session.get('plan_type')
-            plan_price = request.session.get('plan_price')
-
             try:
                 """ Retrieve product """
                 """ Removed create product call due to lack of async support in django 1.11, 
-                the product wasnt being returned before the following code ran, 
+                the product wasnt being returned before the following code ran,
                 causing an error in create plan. """
                 product = stripe.Product.list(limit=1)
 
@@ -131,7 +131,6 @@ def checkout(request):
                         )
 
                 if subscription.created:
-
                     """ Get Dates for Subscription """
                     startDate = make_aware(datetime.fromtimestamp(subscription.current_period_start))
                     endDate = make_aware(datetime.fromtimestamp(subscription.current_period_end))
@@ -170,7 +169,7 @@ def checkout(request):
                     messages.error(request, "Unable to take payment")
             except stripe.error.CardError:
                 messages.error(request, "Your card was declined!")
-                    
+
         else:
             messages.error(request, "We were unable to take a payment with that card!")
     else:
@@ -189,3 +188,51 @@ def checkout(request):
     }
 
     return render(request, 'checkout.html', context)
+
+
+@login_required
+def cancel_sub(request):
+    """ Cancel Subscription """
+
+    try:
+        subscriber = Subscriber.objects.get(user=request.user)
+
+        plan = subscriber.plan
+
+        context = {
+            'user_name': request.user.username,
+            'plan': plan,
+        }
+
+        if request.POST.get('no'):
+            return redirect(reverse('profile'))
+        elif request.POST.get('yes'):
+            """ Get user sub.customer id """
+            subscription_id = subscriber.stripe_sub_id
+            customer_id = subscriber.stripe_cus_id
+
+            """ Delete from Stripe """
+            stripe.Subscription.delete(subscription_id)
+            customer = stripe.Customer.delete(customer_id)
+
+            if customer.deleted:
+                Subscriber.objects.filter(pk=subscriber.id).delete()
+                return redirect(reverse('profile'))
+
+        return render(request, 'cancel.html', context)
+
+    except Subscriber.DoesNotExist:
+        return redirect(reverse('profile'))
+
+
+def get_sub_next_bill_date(request):
+    subscriber = Subscriber.objects.get(user=request.user)
+    subscription_id = subscriber.stripe_sub_id
+    subscription = stripe.Subscription.retrieve(subscription_id)
+    date = make_aware(datetime.fromtimestamp(subscription.current_period_end))
+
+    Subscriber.objects.filter(pk=subscriber.pk).update(
+                            subscription_end_date=date
+                        )
+
+    return date
