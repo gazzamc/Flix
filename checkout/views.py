@@ -55,15 +55,11 @@ def checkout(request):
             plan_price = request.session.get('plan_price')
 
             try:
-                """ Retrieve or create product """
+                """ Retrieve product """
+                """ Removed create product call due to lack of async support in django 1.11, 
+                the product wasnt being returned before the following code ran, 
+                causing an error in create plan. """
                 product = stripe.Product.list(limit=1)
-
-                if len(product) == 0:
-                    product = stripe.Product.create(
-                                name='Flix Subscription',
-                                statement_descriptor='Flix Subscription',
-                                type='service',
-                                )
 
                 """ Retrieve or create plan """
                 plan_list = stripe.Plan.list()
