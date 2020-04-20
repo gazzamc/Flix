@@ -6,7 +6,7 @@ from .models import SubPlan, Subscriber
 
 
 class SubscriberAdmin(admin.ModelAdmin):
-    list_display = ('user', 'plan', 'subscription_date', 'subscription_end_date')
+    list_display = ('user', 'plan', 'stripe_sub_id', 'stripe_cus_id', 'subscription_date', 'subscription_end_date')
     ordering = ('user',)
     search_fields = ('user__username',)
 

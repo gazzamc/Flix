@@ -13,6 +13,8 @@ class SubPlan(models.Model):
 class Subscriber(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     plan = models.ForeignKey(SubPlan, on_delete=models.CASCADE)
+    stripe_sub_id = models.CharField(max_length=50)
+    stripe_cus_id = models.CharField(max_length=50)
     subscription_date = models.DateField()
     subscription_end_date = models.DateField()
 
