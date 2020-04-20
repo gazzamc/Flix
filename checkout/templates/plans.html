@@ -32,9 +32,10 @@
                                 <li class="list-group-item">Unlimited films and TV programmes</li>
                         </ul>
                         <div class="card-body">
-                            <form action="{% url 'payment' %}" method="post">
+                            <form action="{% url 'plans' %}" method="post">
                                 {% csrf_token %}
                                 <input type='hidden' name="plan_type" value="{{ plan.plan_name }}">
+                                <input type='hidden' name="plan_price" value="{{ plan.plan_price }}">
 
                                 {% if user_plan == plan %}
                                     <input type="submit" value="Subscribed" class="btn btn-primary btn-lg" disabled>
