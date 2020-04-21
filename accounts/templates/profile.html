@@ -1,41 +1,78 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block page_title %}Profile{% endblock %}
-
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}" type="text/css">
+{% endblock %}
 {% block content %}
-    <div class="container mt-5" id="profile">
+    <div class="container" id="profile">
         <div class="row">
             <div class="col-12">
-                <h2 class="text-center mt-3">Profile</h2>
+                <h1 class="text-center mt-3">Profile</h1>
                 <hr>
-            </div>
-            <div class="col-12">
-                <div class="col-12 profile-info">
-                    <p><span class="profile-subheading">Name: </span>{{ user.get_full_name }}</p>
-                </div>
-                <hr>
-                <div class="col-12 profile-info">
-                    <p><span class="profile-subheading">Username: </span>{{ user.username }}</p>
-                </div>
-                <hr>
-                <div class="col-12 profile-info">
-                    <p><span class="profile-subheading">Email: </span>{{ user.email }}</p>
-                </div>
-                <hr>
-                <div class="col-12 profile-info">
-                    <p><span class="profile-subheading">Joined: </span>{{ user.date_joined|date:"d-m-Y" }}</p>
-                </div>
-                <hr>
-                <div class="col-12 profile-info mb-5">
-                    <p><span class="profile-subheading">Subscription: </span>{{ user_plan }}</p>
-                        {% if user_plan != None %}
-                            <a href="{% url 'plans' %}">Change</a>
-                            <a href="{% url 'cancel-sub' %}">Cancel</a>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <h4>Customer Details:</h4>
+                    </div>
+                    <div class="col-md-8 offset-md-4">
+                        <p><span class="profile-subheading">Name: </span>{{ user.get_full_name }}</p><hr>
+                        <p><span class="profile-subheading">Username: </span>{{ user.username }}</p><hr>
+                        <p><span class="profile-subheading">Email: </span>{{ user.email }}</p><hr>
+                        <p><span class="profile-subheading">Joined: </span>{{ user.date_joined|date:"d-m-Y" }}</p><hr>
+                    </div>
+                    <hr>
+                    <div class="col-md-4">
+                        <h4>Subscription Details:</h4>
+                    </div>
+                    <div class="col-md-8 offset-md-4">
+                        <p><span class="profile-subheading">Plan: </span>{{ user_plan }}</p><hr>
+                        {% if next_billing == None %}
+                            <p><span class="profile-subheading">Start Date: </span>N/A</p><hr>
+                            <p><span class="profile-subheading">Next billing date: </span>N/A</p><hr>
                         {% else %}
-                            <a href="{% url 'plans' %}">Subscribe</a>
+                            <p><span class="profile-subheading">Start Date: </span>{{ sub_start_date|date:"d-m-Y" }}</p><hr>
+                            <p><span class="profile-subheading">Next billing date: </span>{{ next_billing|date:"d-m-Y" }}</p><hr>
                         {% endif %}
-                    <p>Next billing date: {{ next_billing|date:"d-m-Y" }}</p>
+                        {% if user_plan != None %}
+                            <a class="btn btn-primary" href="{% url 'plans' %}">Change</a>
+                            <button class="btn btn-danger" id="cancel">Cancel</button>
+                        {% else %}
+                            <a class="btn btn-primary" href="{% url 'plans' %}">Subscribe</a>
+                        {% endif %}
+                    </div>
+                    <hr>
+                    <div class="col-md-12 mt-5">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Modal -->
+    <div class="modal" id="cancel-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancel Subscription</h5>
+                    <button type="button" class="close" id="close-top" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to cancel your subscription?</p>
+                </div>
+                <div class="modal-footer">
+                    <!-- Cancel sub -->
+                    <form action="{% url 'cancel-sub' %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-primary" type="submit" value="Yes" name="Yes" />
+                    </form>
+                    <!-- <a href="{% url 'cancel-sub' %}" class="btn btn-primary">Cancel</a> -->
+                    <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- scripts -->
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,10 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load staticfiles %}
 {% load bootstrap_tags %} 
 {% block page_title %}Login Page{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+{% endblock %}
 {% block content %}
     <!-- Section -->
     <div class="container">

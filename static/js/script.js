@@ -115,3 +115,14 @@ function hidePlayBtn(bool){
         $(".fa-play").css("display", "initial");
     }
 }
+
+/* Profile */
+/* modal actions */
+$("button#cancel").click(function(){
+    $("#cancel-modal").css("display", "block");
+    console.log("click");
+});
+
+$("button#close, button#close-top").click(function(){
+    $("#cancel-modal").css("display", "none");
+});

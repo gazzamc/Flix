@@ -1,0 +1,23 @@
+.container{
+    margin-top: 10vh;
+    min-height: 80vh;
+    background-color: #fff;
+    color: #000;
+    border-radius: 2%
+}
+
+form#payment-form{
+    margin-top: 0;
+}
+
+form legend{
+    text-align: center;
+    font-weight: bold;
+    margin: 2% 0 2% 0;
+}
+
+/* Cancel Sub */
+
+.cancel-form{
+    margin-top: 10%;
+}

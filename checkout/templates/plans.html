@@ -1,5 +1,9 @@
 {% extends 'base.html' %} 
-{% block page_title %}Plans{% endblock %} 
+{% load staticfiles %}
+{% block page_title %}Plans{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/plans.css' %}" type="text/css">
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row">

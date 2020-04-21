@@ -1,0 +1,12 @@
+.container{
+    margin-top: 20vh;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    min-height: 60vh;
+}
+
+form{
+    margin-bottom: 4%;
+    margin-top: 4%;
+}

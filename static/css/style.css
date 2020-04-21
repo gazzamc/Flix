@@ -24,6 +24,9 @@ body{
 }
 
 /* footer */
+footer{ 
+    margin-top: 2%;
+}
 footer p{ 
     position: relative;
     bottom: 0%;

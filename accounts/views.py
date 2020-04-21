@@ -88,6 +88,7 @@ def user_profile(request):
 
     if subscriber:
         user_plan = subscriber.plan
+        sub_start_date = subscriber.subscription_date
 
         """ Check if next bill date valid, if not get new date """
         todays_date = date.today()
@@ -100,10 +101,12 @@ def user_profile(request):
     else:
         user_plan = None
         next_bill_date = None
+        sub_start_date = None
 
     user = User.objects.get(email=request.user.email)
 
     context = {
+        "sub_start_date": sub_start_date,
         "profile": user,
         "user_plan": user_plan,
         "next_billing": next_bill_date

@@ -198,17 +198,8 @@ def cancel_sub(request):
     try:
         subscriber = Subscriber.objects.get(user=request.user)
 
-        plan = subscriber.plan
-
-        context = {
-            'user_name': request.user.username,
-            'plan': plan,
-        }
-
         """ https://stackoverflow.com/questions/8571383/how-to-identify-button-click-event-of-template-page-in-view-page-of-django """
-        if request.POST.get('no'):
-            return redirect(reverse('profile'))
-        elif request.POST.get('yes'):
+        if request.POST.get('Yes'):
             """ Get user sub.customer id """
             subscription_id = subscriber.stripe_sub_id
             customer_id = subscriber.stripe_cus_id
@@ -219,9 +210,8 @@ def cancel_sub(request):
 
             if customer.deleted:
                 Subscriber.objects.filter(pk=subscriber.id).delete()
-                return redirect(reverse('profile'))
 
-        return render(request, 'cancel.html', context)
+        return redirect(reverse('profile'))
 
     except Subscriber.DoesNotExist:
         return redirect(reverse('profile'))
