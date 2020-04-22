@@ -42,12 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'taggit',
+    'django_cleanup',
     # Custom Apps
     'accounts',
     'checkout',
     'content',
-
-    'django_cleanup',
+    'search',
 ]
 
 MIDDLEWARE = [
