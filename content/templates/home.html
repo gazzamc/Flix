@@ -27,12 +27,12 @@
 <!-- Content/Genres -->
 <div class="container-fluid">
     <div class="row">
-        {% for category in categories %}
+        {% for genre in genres %}
             <div class="col-12">
-                <h4>{{ category }}</h4>
-                <div class="column" id="{{ category }}">
+                <h4>{{ genre }}</h4>
+                <div class="column" id="{{ genre }}">
                     {% for video in videos %}
-                        {% if video.category == category %}
+                        {% if video.genre == genre %}
                             <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" alt="{{ video.slug }}-cover"></a>
                         {% endif %}
                     {% endfor %}   

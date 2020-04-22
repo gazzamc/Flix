@@ -1,18 +1,18 @@
 from django.contrib import admin
-from .models import Categorie, Video
+from .models import Genre, Video
 
 
-class CategoryAdmin(admin.ModelAdmin):
+class GenreAdmin(admin.ModelAdmin):
     list_display = ('name',)
     ordering = ('name',)
     search_fields = ('name',)
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'views', 'featured')
+    list_display = ('title', 'genre', 'views', 'featured')
     ordering = ('title',)
     search_fields = ('title',)
 
 
-admin.site.register(Categorie, CategoryAdmin)
+admin.site.register(Genre, GenreAdmin)
 admin.site.register(Video, VideoAdmin)

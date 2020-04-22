@@ -5,7 +5,7 @@ from utils.slug_gen import unique_slug_generator
 from django.db import transaction
 
 
-class Categorie(models.Model):
+class Genre(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -18,7 +18,7 @@ class Video(models.Model):
     slug = models.SlugField(max_length=50, null=True, blank=True)
     description = models.TextField(max_length=300)
     youtube_link = models.CharField(max_length=100)
-    category = models.ForeignKey(Categorie, on_delete=models.CASCADE)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE)
     imdb_link = models.CharField(max_length=100)
     tags = TaggableManager()
     image_cover = models.ImageField(upload_to='img')

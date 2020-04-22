@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Categorie, Video
+from .models import Genre, Video
 from django.contrib.auth.decorators import login_required
 from utils.video import get_video_url
 from accounts.models import Subscriber
@@ -13,14 +13,14 @@ def content_view(request):
     if subscriber:
         """ Get Featured Content """
         featured_vid = Video.objects.get(featured=True)
-        categories = Categorie.objects.all()
+        genres = Genre.objects.all()
         all_videos = Video.objects.none()
         final_video_list = []
 
         """ Get 20 videos from each category and combine queryset """
-        for category in categories:
+        for genre in genres:
 
-            videos = Video.objects.filter(category=category)[:2]
+            videos = Video.objects.filter(genre=genre)[:2]
 
             if all_videos is None:
                 all_videos = videos
@@ -30,7 +30,7 @@ def content_view(request):
 
         content = {
             "videos": final_video_list,
-            "categories": categories,
+            "genres": genres,
             "video_url": get_video_url(featured_vid.youtube_link),
             "video_title": featured_vid.title,
             "video_desc": featured_vid.description,
@@ -54,7 +54,7 @@ def video_view(request, slug):
             "slug": video.slug,
             "youtube_link": get_video_url(video.youtube_link),
             "description": video.description,
-            "genre": video.category,
+            "genre": video.genre,
             "video_img": video.image_landscape,
         }
 
