@@ -36,9 +36,9 @@
                                 Genres
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                {% for genre in genres %}
+                                    <a class="dropdown-item" href="">{{ genre }}</a>
+                                {% endfor %}
                             </div>
                         </li>
                     {% endif %}

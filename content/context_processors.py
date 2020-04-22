@@ -1,0 +1,9 @@
+from .models import Categorie
+
+""" https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi/34903331 """
+def add_genres_to_context(request):
+    genres = Categorie.objects.all()
+    context = {
+        'genres': genres,
+    }
+    return context
