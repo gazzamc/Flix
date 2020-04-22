@@ -27,7 +27,7 @@
 <!-- Content/Genres -->
 <div class="container-fluid">
     <div class="row">
-            {% for category in categories %}
+        {% for category in categories %}
             <div class="col-12">
                 <h4>{{ category }}</h4>
                 <div class="column" id="{{ category }}">
@@ -40,9 +40,9 @@
                     <i class="fas fa-angle-right" style="display: none"></i>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-
-        <!-- scripts -->
-        <script src="{% static 'js/script.js' %}"></script>
+        {% endfor %}
+    </div>
+</div>
+<!-- scripts -->
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

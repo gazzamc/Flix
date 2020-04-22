@@ -11,16 +11,26 @@ body{
 .dropdown-menu a:hover,
 .dropdown-menu a:focus{ 
     min-width: 7rem;
-    background-color: #000;
+    background-color: rgba(0,0,0, 0.3);
 }
 
 .bg-dark{
     background-color: #000!important;
 }
 
-.dropdown-item, 
+.dropdown-item{
+    text-align: center;
+    color: rgba(255,255,255,.5);
+}
 .dropdown-item:hover{
-    color: #fff;
+    color: rgba(255,255,255, 1);
+    background:transparent;
+}
+
+a.dropdown-item i.fas.fa-user, 
+a.dropdown-item i.fas.fa-sign-out-alt{
+    font-size: 1.4em;
+    background-color: transparent;
 }
 
 /* footer */
@@ -33,7 +43,18 @@ footer p{
     text-align: center;
 }
 
-/* Hide navbar on scroll */
-.showNavBar{
-    background-color: rgba(52, 58, 64, 0)!important;
+/* Search Box */
+#searchbox{
+    display: none;
+    width: 80%;
+}
+
+#search-icon{
+    color: rgba(255,255,255,.5);
+    font-size: 1.4em;
+}
+
+#search-icon:hover{
+    color: rgba(255,255,255, 1);
+    font-size: 1.4em;
 }

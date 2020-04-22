@@ -126,3 +126,9 @@ $("button#cancel").click(function(){
 $("button#close, button#close-top").click(function(){
     $("#cancel-modal").css("display", "none");
 });
+
+/* Search icon */
+$("#search-icon").click(function(){
+    $( "#searchbox" ).slideToggle( "slow", function() {
+  });
+});

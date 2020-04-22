@@ -1,3 +1,8 @@
+/* Navbar */
+.showNavBar{
+    background-color: rgba(52, 58, 64, 0)!important;
+}
+
 /* jumbotron */
 #jumboVid{
     position: relative;
@@ -53,13 +58,9 @@
     width: 100%;
     z-index: 1;
     background: linear-gradient(
-      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.3),
       rgba(0, 0, 0, 1) 100%
     );
-}
- .elementOverShade {
-     position: relative;
-     z-index: 10;
 }
 
 /* https://stackoverflow.com/questions/50320756/how-to-stop-3-images-side-by-side-inside-a-div-from-wrapping-to-the-next-line */
