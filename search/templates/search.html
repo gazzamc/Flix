@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+{% load staticfiles %}
+{% block page_title %}Search{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+            {% if search_term == None and genre == None %}
+                <div class="col-md-8 offset-md-2">
+                    <form class="form-inline my-2 my-lg-0" action="{% url 'plans' %}" method="get">
+                        <input class="form-control mr-sm-2" id="fullsearchbox" type="search" placeholder="Search" aria-label="Search">
+                    </form> 
+                </div>
+            {% elif genre != None %}
+                <div class="col-md-8 offset-md-2 mb-5">
+                    <h2>{{ genre }}</h2>
+                </div>
+                <!-- Results -->
+                <div class="col-10 offset-1 text-center">
+                    {% for result in results %}
+                        <div class="result-box">
+                            <a href="../content/{{ result.slug }}"><img src="/{{ result.image_cover }}" alt="{{ result.slug }}-cover"/></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="col-md-8 offset-md-2 text-center">
+                    <input class="form-control mr-sm-2" id="fullsearchbox" type="search" placeholder="Search" aria-label="Search">
+                    <h2 class="m-5">{{ result_count }} results found for search term "{{ search_term }}"</h2>
+                    {% for result in results %}
+                        <div class="result-box">
+                            <a href="../content/{{ result.slug }}"><img src="/{{ result.image_cover }}" alt="{{ result.slug }}-cover"/></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+    </div>
+</div>
+<script src="{% static 'js/search.js' %}"></script>
+{% endblock %}

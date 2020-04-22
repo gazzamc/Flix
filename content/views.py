@@ -20,7 +20,7 @@ def content_view(request):
         """ Get 20 videos from each category and combine queryset """
         for genre in genres:
 
-            videos = Video.objects.filter(genre=genre)[:2]
+            videos = Video.objects.filter(genre=genre)[:20]
 
             if all_videos is None:
                 all_videos = videos

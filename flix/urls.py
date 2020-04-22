@@ -19,6 +19,7 @@ from accounts.views import index
 from accounts import urls as accounts_urls
 from checkout import urls as checkout_urls
 from content import urls as content_urls
+from search import urls as search_urls
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 
@@ -28,5 +29,6 @@ urlpatterns = [
     url(r'^content/', include(content_urls)),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^checkout/', include(checkout_urls)),
+    url(r'^search/', include(search_urls)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
 ]
