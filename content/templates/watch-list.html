@@ -16,7 +16,7 @@
             <div class="col-md-8 offset-md-2 text-center">
                 {% for video in videos %}
                         <div class="result-box">
-                            <a href="../{{ video.slug }}"><img src="/{{ video.image_cover }}" alt="{{ video.slug }}"/></a>
+                            <a href="../{{ video.slug }}"><img src="/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
                             <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
                             <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
                             <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>

@@ -19,7 +19,8 @@ body{
 }
 
 .dropdown-item{
-    text-align: center;
+    /* text-align: center; */
+    margin-top: 5%;
     color: rgba(255,255,255,.5);
 }
 .dropdown-item:hover{
@@ -56,5 +57,4 @@ footer p{
 
 #search-icon:hover{
     color: rgba(255,255,255, 1);
-    font-size: 1.4em;
 }

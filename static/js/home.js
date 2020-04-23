@@ -55,9 +55,11 @@ function isVisible(item){
     let result = false;
     let offset = item.offset();
 
-    if(offset.left < window.innerWidth){
+    if(offset.left > window.innerWidth && 
+        offset.left < window.innerWidth){
         result = true;
     }
+
     return result;
 }
 
@@ -69,9 +71,10 @@ function showControls(){
     let id = $(this).attr("id");
     let curScroll = $("#" + id + ".column").scrollLeft();
 
-    $("#" + id + ".column img").each(function(item){
+    $("#" + id + ".column .result-box a img").each(function(item){
         if(!isVisible($(this))){
             /* Show arrows */
+            console.log(curScroll);
             if(curScroll > 0){
                 $('#' + id + ' .fas.fa-angle-left').show();
                 $('#' + id + ' .fas.fa-angle-right').show();

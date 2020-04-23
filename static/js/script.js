@@ -1,3 +1,6 @@
+/* Global */
+var baseUrl = window.location.protocol + "//" + window.location.host;
+
 /* Profile */
 /* modal actions */
 $("button#cancel").click(function(){
@@ -22,20 +25,30 @@ $('#searchbox, #fullsearchbox').keypress(function(event){
 });
 
 /* watch list */
-
 $('.result-box').hover(function(){
     $(this).find("i").css('display', 'inline-flex');
     $(this).find("a").find("img").css('opacity', '0.6');
+
+    if(window.location.pathname != "/"){
+        $(this).find("a").find("img").addClass("img-big");
+    } else{
+        $(this).addClass("result-box-hover");
+    }
+    
 }, function(){
     $(this).find("i").css('display', 'none');
     $(this).find("a").find("img").css('opacity', '');
+
+    if(window.location.pathname != "/"){
+        $(this).find("a").find("img").removeClass("img-big");
+    } else{
+        $(this).removeClass("result-box-hover");
+    }
 });
 
 $('.delete-item-icon').click(function(){
-    let baseUrl = window.location.protocol + "//" + window.location.host;
     let fullUrl = baseUrl + "/content/watch-list/";
-
-    slug = $(this).siblings().find("img").attr("alt");
+    let slug = $(this).siblings().find("img").attr("alt");
 
     /* Check if last item if so refresh */
     let count = $('.result-box').length

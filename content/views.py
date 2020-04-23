@@ -16,6 +16,7 @@ def content_view(request):
         featured_vid = Video.objects.get(featured=True)
         genres = Genre.objects.all()
         all_videos = Video.objects.none()
+        watch_list = get_watchlist(request)
         final_video_list = []
 
         """ Get 20 videos from each category and combine queryset """
@@ -32,6 +33,7 @@ def content_view(request):
         content = {
             "videos": final_video_list,
             "genres": genres,
+            "watch_list": watch_list,
             "video_url": get_video_url(featured_vid.youtube_link),
             "video_title": featured_vid.title,
             "video_desc": featured_vid.description,

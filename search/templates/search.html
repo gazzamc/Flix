@@ -22,8 +22,16 @@
                 <div class="col-10 offset-1 text-center">
                     {% for result in results %}
                         <div class="result-box">
-                            <a href="../content/{{ result.slug }}"><img src="/{{ result.image_cover }}" alt="{{ result.slug }}"/></a>
-                            <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                            <a href="../content/{{ result.slug }}"><img src="/{{ result.image_cover }}" class="img-small" alt="{{ result.slug }}"/></a>
+                            {% if watch_list != None %}
+                                {% if watch_list|video_in_watchlist:result.title %} 
+                                    <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                {% else %}
+                                    <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                            {% else %}
+                                    <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                            {% endif %}
                             <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
                             <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
                         </div>
@@ -35,12 +43,12 @@
                     <h2 class="m-5">{{ result_count }} results found for search term "{{ search_term }}"</h2>
                     {% for result in results %}
                         <div class="result-box">
-                            <a href="../content/{{ result.slug }}"><img src="/{{ result.image_cover }}" alt="{{ result.slug }}"/></a>
+                            <a href="../content/{{ result.slug }}"><img src="/{{ result.image_cover }}" class="img-small" alt="{{ result.slug }}"/></a>
                                 {% if watch_list != None %}
                                     {% if watch_list|video_in_watchlist:result.title %} 
-                                            <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
                                     {% else %}
-                                            <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
                                     {% endif %}
                                 {% else %}
                                     <i class="fas fa-plus delete-item-icon" style="display: none;"></i>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load staticfiles %}
+{% load video_in_watchlist from template_filters %}
 {% block page_title %}Home{% endblock %}
 {% block custom_css %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
@@ -33,7 +34,105 @@
                 <div class="column" id="{{ genre }}">
                     {% for video in videos %}
                         {% if video.genre == genre %}
-                            <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" alt="{{ video.slug }}-cover"></a>
+                            <!-- Duplicated temporarily to check scroll -->
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
+                            <div class="result-box">
+                                <a href="/content/{{ video.slug }}"><img src="{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                {% if watch_list != None %}
+                                    {% if watch_list|video_in_watchlist:video.title %} 
+                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                    {% endif %}
+                                {% else %}
+                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                                {% endif %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            </div>
                         {% endif %}
                     {% endfor %}   
                     <i class="fas fa-angle-left" style="display: none"></i>

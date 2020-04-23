@@ -3,7 +3,6 @@ from content.models import Video, Genre, Watchlist
 from content.views import get_watchlist
 
 
-
 def search_view(request):
     """ Render search page """
     term = request.GET.get('q')
@@ -48,4 +47,3 @@ def search_by_term(term):
     """ Get Videos by term """
     videos = Video.objects.filter(title__contains=term)
     return videos
-
