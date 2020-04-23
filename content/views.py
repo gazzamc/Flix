@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Genre, Video, Watchlist
+from .models import Genre, Video, Watchlist, Likelist, Dislikelist
 from django.contrib.auth.decorators import login_required
+from django.urls import resolve
 from django.contrib import messages
 from utils.video import get_video_url
 from accounts.models import Subscriber
@@ -109,10 +110,63 @@ def add_to_watchlist(request, slug):
         video = get_object_or_404(Video, slug=slug)
 
         Watchlist.objects.get_or_create(
-            watch_item=video,
+            item=video,
             slug=video.slug,
             user=request.user,
         )
 
         messages.info(request, 'The item was added to your watchlist')
     return redirect(reverse('watch-list'))
+
+
+@login_required
+def like_dislike_video(request, slug):
+    """ Add items to user like/dislike lists """
+    """ https://stackoverflow.com/questions/54945781/django-how-to-get-url-path """
+    current_url = resolve(request.path_info).url_name
+
+    if current_url == 'like':
+        """ Check if item is disliked """
+        try:
+            """ Check if item is in dislike list
+                if so remove and add to likes """
+            item = Dislikelist.objects.get(slug=slug)
+            item.delete()
+
+        except Dislikelist.DoesNotExist:
+            """ Do nothing """
+
+        """ If not add to likes """
+        video = get_object_or_404(Video, slug=slug)
+
+        Likelist.objects.get_or_create(
+            item=video,
+            slug=video.slug,
+            user=request.user,
+        )
+
+        messages.info(request, 'You liked ' + video.title)
+
+    elif current_url == 'dislike':
+        """ Check if item is liked """
+        try:
+            """ Check if item is in dislike list
+                if so remove and add to likes """
+            item = Likelist.objects.get(slug=slug)
+            item.delete()
+
+        except Likelist.DoesNotExist:
+            """ Do nothing """
+
+        """ If not add to dislikes """
+        video = get_object_or_404(Video, slug=slug)
+
+        Dislikelist.objects.get_or_create(
+            item=video,
+            slug=video.slug,
+            user=request.user,
+        )
+
+        messages.info(request, 'You disliked ' + video.title)
+
+    return redirect(reverse('index'))

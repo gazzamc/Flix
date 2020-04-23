@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Genre, Video
+from .models import Genre, Video, Likelist, Dislikelist
 
 
 class GenreAdmin(admin.ModelAdmin):
