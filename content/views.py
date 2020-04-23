@@ -67,6 +67,16 @@ def video_view(request, slug):
 @login_required
 def watchlist_view(request):
     """ Get User Watch List videos """
+    videos = get_watchlist(request)
+
+    context = {
+        'videos': videos
+    }
+
+    return render(request, 'watch-list.html', context)
+
+
+def get_watchlist(request):
 
     items = Watchlist.objects.filter(user=request.user)
     videos = Video.objects.none()
@@ -77,11 +87,7 @@ def watchlist_view(request):
     if len(videos) == 0:
         videos = None
 
-    context = {
-        'videos': videos
-    }
-
-    return render(request, 'watch-list.html', context)
+    return videos
 
 
 @login_required

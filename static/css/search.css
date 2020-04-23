@@ -7,6 +7,7 @@
 }
 
 .result-box{
+    position: relative;
     display: inline;
 }
 
@@ -25,13 +26,26 @@
 
 /* watch list */
 
+/* Icons */
+.delete-item-icon,
+.like-item-icon,
+.dislike-item-icon{
+    position: absolute;
+    color: #fff;
+    font-size: 1.5em;
+    margin-top: 120%;
+}
+
 .delete-item-icon{
-    position: relative;
-    width: 5px;
-    font-size: 2em;
-    bottom: -40%;
-    left: -8%;
-    color: red;
+    right: 10%;
+}
+
+.dislike-item-icon{
+    right: 40%;
+}
+
+.like-item-icon{
+    right: 70%;
 }
 
 @media (min-width: 576px) {

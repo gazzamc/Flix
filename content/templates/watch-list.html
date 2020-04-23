@@ -18,6 +18,8 @@
                         <div class="result-box">
                             <a href="../{{ video.slug }}"><img src="/{{ video.image_cover }}" alt="{{ video.slug }}"/></a>
                             <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                            <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                            <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
                         </div>
                 {% endfor %}
             </div>
