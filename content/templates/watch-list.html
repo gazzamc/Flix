@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% load staticfiles %}
+{% block page_title %}Watch List{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/search.css' %}" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {% if videos == None %}
+            <div class="col-md-8 offset-md-2">
+                <h2 class="m-5">It's a little lonely in here, Add some videos to your list by pressing the <i class="fas fa-plus"></i> icon</h2>
+            </div>
+        {% else %}
+            <h2 class="m-5">{{ user.username }}'s Watch List:</h2>
+            <div class="col-md-8 offset-md-2 text-center">
+                {% for video in videos %}
+                        <div class="result-box">
+                            <a href="../{{ video.slug }}"><img src="/{{ video.image_cover }}" alt="{{ video.slug }}"/></a>
+                            <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
+                        </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

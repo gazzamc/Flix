@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Genre, Video
+from .models import Genre, Video, Watchlist
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from utils.video import get_video_url
 from accounts.models import Subscriber
 from itertools import chain
@@ -61,3 +62,48 @@ def video_view(request, slug):
         return render(request, 'video.html', content)
     else:
         return redirect(reverse('plans'))
+
+
+@login_required
+def watchlist_view(request):
+    """ Get User Watch List videos """
+
+    items = Watchlist.objects.filter(user=request.user)
+    videos = Video.objects.none()
+
+    for item in items:
+        videos = Video.objects.filter(title=item) | videos
+
+    if len(videos) == 0:
+        videos = None
+
+    context = {
+        'videos': videos
+    }
+
+    return render(request, 'watch-list.html', context)
+
+
+@login_required
+def add_to_watchlist(request, slug):
+    """ Add items to user watch list """
+    """ https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django """
+
+    """ Check if item exist, if so remove """
+    try:
+        item = Watchlist.objects.get(slug=slug)
+        item.delete()
+        messages.info(request, 'The item was removed from your watchlist')
+
+    except Watchlist.DoesNotExist:
+
+        video = get_object_or_404(Video, slug=slug)
+
+        Watchlist.objects.get_or_create(
+            watch_item=video,
+            slug=video.slug,
+            user=request.user,
+        )
+
+        messages.info(request, 'The item was added to your watchlist')
+    return redirect(reverse('watch-list'))

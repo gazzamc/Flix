@@ -2,6 +2,7 @@ from django.db import models
 from taggit.managers import TaggableManager
 from django.db.models.signals import pre_save
 from utils.slug_gen import unique_slug_generator
+from django.contrib.auth.models import User
 from django.db import transaction
 
 
@@ -37,6 +38,16 @@ class Video(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    watch_item = models.ForeignKey(Video, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=50, null=True, blank=True)
+    added_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.watch_item.title
 
 
 def slug_generator(sender, instance, *args, **kwargs):

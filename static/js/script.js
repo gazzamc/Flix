@@ -20,3 +20,18 @@ $('#searchbox, #fullsearchbox').keypress(function(event){
         window.location.href = "/search?q=" + search_term
 	}
 });
+
+/* watch list */
+
+$('.result-box').hover(function(){
+    $(this).find("i").css('display', 'inline-flex');
+}, function(){
+    $(this).find("i").css('display', 'none');
+});
+
+$('.delete-item-icon').click(function(){
+    slug = $(this).siblings().find("img").attr("alt");
+    $.get(location + slug, function() {
+        location.reload();
+    });
+});
