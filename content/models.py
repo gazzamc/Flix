@@ -42,12 +42,30 @@ class Video(models.Model):
 
 class Watchlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    watch_item = models.ForeignKey(Video, on_delete=models.CASCADE)
+    item = models.ForeignKey(Video, on_delete=models.CASCADE)
     slug = models.CharField(max_length=50, null=True, blank=True)
     added_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.watch_item.title
+        return self.item.title
+
+
+class Likelist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Video, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.item.title
+
+
+class Dislikelist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Video, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.item.title
 
 
 def slug_generator(sender, instance, *args, **kwargs):

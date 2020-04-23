@@ -45,6 +45,7 @@ def content_view(request):
     else:
         return redirect(reverse('plans'))
 
+
 @login_required
 def video_view(request, slug):
     """ Display single video content """
@@ -79,7 +80,7 @@ def watchlist_view(request):
 
 
 def get_watchlist(request):
-
+    """ Get videos in user watch list """
     items = Watchlist.objects.filter(user=request.user)
     videos = Video.objects.none()
 
