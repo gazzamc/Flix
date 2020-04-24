@@ -6,6 +6,7 @@ from django.contrib import messages
 from utils.video import get_video_url
 from accounts.models import Subscriber
 from itertools import chain
+from taggit.models import Tag
 import random
 
 
@@ -19,6 +20,7 @@ def content_view(request):
             featured_vid = Video.objects.get(featured=True)
         except Video.DoesNotExist:
             """ If featured isnt set grab random """
+            """ https://stackoverflow.com/questions/22816704/django-get-a-random-object/22816927 """
             videos = Video.objects.all()
             featured_vid = random.choice(videos)
 
@@ -39,8 +41,6 @@ def content_view(request):
             else:
                 """ https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django """
                 final_video_list = list(chain(videos, final_video_list))
-
-        print(like_list)
 
         content = {
             "videos": final_video_list,
@@ -67,8 +67,13 @@ def video_view(request, slug):
     subscriber = Subscriber.objects.filter(user=request.user.id)
     if subscriber:
         video = get_object_or_404(Video, slug=slug)
+
+        # https://stackoverflow.com/questions/11321906/in-django-taggit-how-to-get-tags-for-objects-that-are-associated-with-a-specifi
+        tags = Tag.objects.filter(video__title=video.title)
+
         content = {
             "title": video.title,
+            "tags": tags,
             "slug": video.slug,
             "youtube_link": get_video_url(video.youtube_link),
             "description": video.description,

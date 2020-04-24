@@ -8,12 +8,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <div class="jumbotron">
-                <form action="{% url 'index' %}" method="post">
-                    {% csrf_token %}
-                    <input id="email" type="email" placeholder="email@example.com" required/><br>
-                    <input class="btn btn-primary btn-lg" type="submit" value="Subscribe Today!"/>
-                </form>
+            <div class="jumbotron" style="background-image: url({% static 'images/responsive_screen.png' %})">
+                <h1 class="page-header">Flix</h1>
+                <p class="lead">Click. Play. Anywhere!</p>
             </div>
         </div>
     </div>

@@ -12,11 +12,13 @@
                 <h2 class="m-5">It's a little lonely in here, Add some videos to your list by pressing the <i class="fas fa-plus"></i> icon</h2>
             </div>
         {% else %}
-            <h2 class="m-5">{{ user.username }}'s Watch List:</h2>
-            <div class="col-md-8 offset-md-2 text-center">
+            <div class="col-md-8 offset-md-2">
+                <h2 class="m-5">Watch List:</h2>
+            </div>
+            <div class="col-md-10 text-center">
                 {% for video in videos %}
                         <div class="result-box">
-                            <a href="../{{ video.slug }}"><img src="/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
+                            <a href="../{{ video.slug }}"><img src="/media/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
                             <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
                             <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
                             <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>

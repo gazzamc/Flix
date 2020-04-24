@@ -13,6 +13,7 @@ class VideoAdmin(admin.ModelAdmin):
     ordering = ('title',)
     search_fields = ('title',)
 
+    # https://stackoverflow.com/questions/16014719/adding-a-jquery-script-to-the-django-admin-interface
     class Media:
         js = (
             'libs/js/jquery-3.4.1.min.js',

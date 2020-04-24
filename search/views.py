@@ -7,6 +7,7 @@ def search_view(request):
     """ Render search page """
     term = request.GET.get('q')
     genre = request.GET.get('genre')
+    tag = request.GET.get('tag')
     watch_list = get_watchlist(request)
     context = {}
 

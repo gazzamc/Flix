@@ -1,7 +1,13 @@
 /* jumbotron */
 
 .jumbotron{
-    height: 100vh;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-attachment: fixed;
+    background-size: 70%;
+    height: 80vh;
     padding: 0;
     margin-top: 1%;
     -webkit-box-shadow: inset 0px 1px 22px 16px rgba(0,0,0,0.46);
@@ -12,9 +18,9 @@
 .jumbotron h1, .jumbotron .lead{
     position: relative;
     padding-left: 10%;
-    top: 30%;
+    top: 20%;
     color: #fff;
-    font-size: 4em;
+    font-size: 6em;
 }
 
 .jumbotron .lead{
@@ -24,20 +30,21 @@
 
 .jumbotron form{
     position: absolute;
-    top: 70vh;
+    top: 60vh;
     bottom: 0;
     left: 0;
-    right: 0;
+    right: 5vw;
     text-align: center;
 }
 
 .jumbotron form .btn{
+    position: relative;
     margin-top: 1%;
 }
 
 form input#email{
-    height: 5vh;
-    width: 30vw;
-    font-size: 2.5em;
+    height: 4vh;
+    width: 20vw;
+    font-size: 2em;
     text-align: center;
 }
