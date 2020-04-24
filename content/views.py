@@ -6,6 +6,7 @@ from django.contrib import messages
 from utils.video import get_video_url
 from accounts.models import Subscriber
 from itertools import chain
+import random
 
 
 @login_required
@@ -14,10 +15,18 @@ def content_view(request):
     subscriber = Subscriber.objects.filter(user=request.user.id)
     if subscriber:
         """ Get Featured Content """
-        featured_vid = Video.objects.get(featured=True)
+        try:
+            featured_vid = Video.objects.get(featured=True)
+        except Video.DoesNotExist:
+            """ If featured isnt set grab random """
+            videos = Video.objects.all()
+            featured_vid = random.choice(videos)
+
         genres = Genre.objects.all()
         all_videos = Video.objects.none()
         watch_list = get_watchlist(request)
+        like_list = get_likelist(request)
+        dislike_list = get_dislikelist(request)
         final_video_list = []
 
         """ Get 20 videos from each category and combine queryset """
@@ -31,10 +40,14 @@ def content_view(request):
                 """ https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django """
                 final_video_list = list(chain(videos, final_video_list))
 
+        print(like_list)
+
         content = {
             "videos": final_video_list,
             "genres": genres,
             "watch_list": watch_list,
+            "like_list": like_list,
+            "dislike_list": dislike_list,
             "video_url": get_video_url(featured_vid.youtube_link),
             "video_title": featured_vid.title,
             "video_desc": featured_vid.description,
@@ -115,7 +128,6 @@ def add_to_watchlist(request, slug):
             user=request.user,
         )
 
-        messages.info(request, 'The item was added to your watchlist')
     return redirect(reverse('watch-list'))
 
 
@@ -124,6 +136,7 @@ def like_dislike_video(request, slug):
     """ Add items to user like/dislike lists """
     """ https://stackoverflow.com/questions/54945781/django-how-to-get-url-path """
     current_url = resolve(request.path_info).url_name
+    video = get_object_or_404(Video, slug=slug)
 
     if current_url == 'like':
         """ Check if item is disliked """
@@ -136,37 +149,67 @@ def like_dislike_video(request, slug):
         except Dislikelist.DoesNotExist:
             """ Do nothing """
 
-        """ If not add to likes """
-        video = get_object_or_404(Video, slug=slug)
-
-        Likelist.objects.get_or_create(
-            item=video,
-            slug=video.slug,
-            user=request.user,
-        )
-
-        messages.info(request, 'You liked ' + video.title)
-
-    elif current_url == 'dislike':
-        """ Check if item is liked """
+        """ check if already in likes, then remove """
         try:
-            """ Check if item is in dislike list
-                if so remove and add to likes """
             item = Likelist.objects.get(slug=slug)
             item.delete()
 
         except Likelist.DoesNotExist:
-            """ Do nothing """
+            """ If not add to likes """
+            Likelist.objects.get_or_create(
+                item=video,
+                slug=video.slug,
+                user=request.user,
+            )
 
-        """ If not add to dislikes """
-        video = get_object_or_404(Video, slug=slug)
+    elif current_url == 'dislike':
+        """ Check if item is liked """
+        try:
+            item = Likelist.objects.get(slug=slug)
+            item.delete()
 
-        Dislikelist.objects.get_or_create(
-            item=video,
-            slug=video.slug,
-            user=request.user,
-        )
+        except Likelist.DoesNotExist:
+            """ Do Nothing """
 
-        messages.info(request, 'You disliked ' + video.title)
+        """ check if already in Dislikes, then remove """
+        try:
+            item = Dislikelist.objects.get(slug=slug)
+            item.delete()
+
+        except Dislikelist.DoesNotExist:
+            """ If not add to dislikes """
+            Dislikelist.objects.get_or_create(
+                item=video,
+                slug=video.slug,
+                user=request.user,
+            )
 
     return redirect(reverse('index'))
+
+
+def get_likelist(request):
+    """ Get videos in user watch list """
+    items = Likelist.objects.filter(user=request.user)
+    videos = Video.objects.none()
+
+    for item in items:
+        videos = Video.objects.filter(title=item) | videos
+
+    if len(videos) == 0:
+        videos = None
+
+    return videos
+
+
+def get_dislikelist(request):
+    """ Get videos in user watch list """
+    items = Dislikelist.objects.filter(user=request.user)
+    videos = Video.objects.none()
+
+    for item in items:
+        videos = Video.objects.filter(title=item) | videos
+
+    if len(videos) == 0:
+        videos = None
+
+    return videos

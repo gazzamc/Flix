@@ -58,3 +58,13 @@ footer p{
 #search-icon:hover{
     color: rgba(255,255,255, 1);
 }
+
+/* add opacity to icons */
+
+.shaded-icon{
+    color: rgba(0,0,0, 0.5)!important;
+}
+
+.selected-icon{
+    color: rgba(0,0,0, 1)!important;
+}

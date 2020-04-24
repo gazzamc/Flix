@@ -25,7 +25,7 @@ $('#searchbox, #fullsearchbox').keypress(function(event){
 });
 
 /* watch list */
-$('.result-box').hover(function(){
+$(".result-box").hover(function(){
     $(this).find("i").css('display', 'inline-flex');
     $(this).find("a").find("img").css('opacity', '0.6');
 
@@ -46,7 +46,7 @@ $('.result-box').hover(function(){
     }
 });
 
-$('.delete-item-icon').click(function(){
+$(".delete-item-icon").click(function(){
     let fullUrl = baseUrl + "/content/watch-list/";
     let slug = $(this).siblings().find("img").attr("alt");
 
@@ -71,5 +71,45 @@ $('.delete-item-icon').click(function(){
     } else{
         $(this).addClass("fa-times-circle");
         $(this).removeClass("fa-plus");
+    }
+});
+
+/* Likes */
+$(".fa-thumbs-up, .fa-thumbs-down").click(function(){
+    let slug = $(this).siblings().find("img").attr("alt");
+
+    if($(this).hasClass("fa-thumbs-up")){
+        /* Add To Likes */
+        if($(this).hasClass("shaded-icon")){
+            $(this).removeClass("shaded-icon");
+            $(this).siblings(".fa-thumbs-down").addClass("shaded-icon");
+        } else{
+            if($(this).siblings(".fa-thumbs-down").hasClass("shaded-icon")){
+                $(this).siblings(".fa-thumbs-down").removeClass("shaded-icon");
+            } else{
+                $(this).siblings(".fa-thumbs-down").addClass("shaded-icon");
+            }
+        }
+
+        $.get(baseUrl + "/content/like/" + slug, function() {
+            /* show modal */
+            $("#message-modal").show();
+        });
+    } else{
+        /* Add To Dislikes */
+        if($(this).hasClass("shaded-icon")){
+            $(this).removeClass("shaded-icon");
+            $(this).siblings(".fa-thumbs-up").addClass("shaded-icon");
+        } else{
+            if($(this).siblings(".fa-thumbs-up").hasClass("shaded-icon")){
+                $(this).siblings(".fa-thumbs-up").removeClass("shaded-icon");
+            } else{
+                $(this).siblings(".fa-thumbs-up").addClass("shaded-icon");
+            }
+        }
+
+        $.get(baseUrl + "/content/dislike/" + slug, function() {
+            /* Add/Remove from like list */
+        });
     }
 });

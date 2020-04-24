@@ -74,7 +74,6 @@ function showControls(){
     $("#" + id + ".column .result-box a img").each(function(item){
         if(!isVisible($(this))){
             /* Show arrows */
-            console.log(curScroll);
             if(curScroll > 0){
                 $('#' + id + ' .fas.fa-angle-left').show();
                 $('#' + id + ' .fas.fa-angle-right').show();

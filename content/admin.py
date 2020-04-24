@@ -13,6 +13,12 @@ class VideoAdmin(admin.ModelAdmin):
     ordering = ('title',)
     search_fields = ('title',)
 
+    class Media:
+        js = (
+            'libs/js/jquery-3.4.1.min.js',
+            'js/admin-imdb.js',
+        )
+
 
 admin.site.register(Genre, GenreAdmin)
 admin.site.register(Video, VideoAdmin)
