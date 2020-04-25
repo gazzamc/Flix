@@ -27,9 +27,6 @@ def content_view(request):
 
         genres = Genre.objects.all()
         all_videos = Video.objects.none()
-        watch_list = get_watchlist(request)
-        like_list = get_likelist(request)
-        dislike_list = get_dislikelist(request)
         final_video_list = []
 
         # Get 20 videos from each category and combine queryset
@@ -46,9 +43,6 @@ def content_view(request):
         content = {
             "videos": final_video_list,
             "genres": genres,
-            "watch_list": watch_list,
-            "like_list": like_list,
-            "dislike_list": dislike_list,
             "video_url": get_video_url(featured_vid.youtube_link),
             "video_title": featured_vid.title,
             "video_desc": featured_vid.description,
@@ -68,9 +62,11 @@ def video_view(request, slug):
     subscriber = Subscriber.objects.filter(user=request.user.id)
     if subscriber:
         video = get_object_or_404(Video, slug=slug)
-
         # https://stackoverflow.com/questions/11321906/in-django-taggit-how-to-get-tags-for-objects-that-are-associated-with-a-specifi
         tags = Tag.objects.filter(video__title=video.title)
+
+        # Get suggested videos
+        videos = get_suggested_by_video(video, 3)
 
         content = {
             "title": video.title,
@@ -80,6 +76,7 @@ def video_view(request, slug):
             "description": video.description,
             "genre": video.genre,
             "video_img": video.image_landscape,
+            "videos": videos
         }
 
         return render(request, 'video.html', content)
@@ -91,15 +88,9 @@ def video_view(request, slug):
 def watchlist_view(request):
     """ Get User Watch List videos """
     videos = get_watchlist(request)
-    watch_list = get_watchlist(request)
-    like_list = get_likelist(request)
-    dislike_list = get_dislikelist(request)
 
     context = {
         'videos': videos,
-        "watch_list": watch_list,
-        "like_list": like_list,
-        "dislike_list": dislike_list,
     }
 
     return render(request, 'watch-list.html', context)
@@ -224,7 +215,7 @@ def get_dislikelist(request):
     return videos
 
 
-def get_suggested_by_likes(request):
+def get_suggested_by_likes(request, num):
     """ Get videos based on users likes """
     videos = Video.objects.none()
     tag_list = []
@@ -249,7 +240,7 @@ def get_suggested_by_likes(request):
 
     # Get videos based on tags
     # https://django-taggit.readthedocs.io/en/latest/api.html#filtering
-    videos = Video.objects.filter(tags__name__in=tag_list)
+    videos = Video.objects.filter(tags__name__in=tag_list)[:num]
 
     return videos
 

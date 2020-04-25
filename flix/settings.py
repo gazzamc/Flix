@@ -73,7 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'content.context_processors.add_genres_to_context',
+                'content.context_processors.add_global_lists_to_context',
             ],
         },
     },
