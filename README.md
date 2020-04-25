@@ -160,7 +160,11 @@ Below you can find the schema of each table along with the datatypes for each fi
 - In order to register the models in the admin panel I used the example [here](https://djangobook.com/mdj2-django-admin/).
 - To filter the items using the fields of the models I used this example [here](https://stackoverflow.com/questions/48665353/django-1-11-admin-list-filter-to-include-fields-in-another-model).
 - In order to get a random video if a featured video wasnt supplied I used this example [here](https://stackoverflow.com/questions/22816704/django-get-a-random-object/22816927).
-- When showing the home view I needed to get join several querysets from seperate genres, I was able to do so using this example [here](https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django).
+- When showing the home view I needed to get join several querysets from separate genres, I was able to do so using this example [here](https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django).
+- I was able to add tags to my models using [this](https://dev.to/coderasha/how-to-add-tags-to-your-models-in-django-django-packages-series-1-3704) example.
 - As I'm using `django-taggit` in order to add tags to videos I needed a way to retrieve the tags, using this example [here](https://stackoverflow.com/questions/11321906/in-django-taggit-how-to-get-tags-for-objects-that-are-associated-with-a-specifi) I was able to do so.
 - This example [here](https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django) gave me a good idea on how to implement a watch, like and dislike list for the user.
 - I used this [example](https://stackoverflow.com/questions/54945781/django-how-to-get-url-path) to get the current url when adding/removing liked/disliked videos.
+- When adding a video I needed the fetured option to be unique to one video, in order to do this I used this example [here](https://stackoverflow.com/questions/1455126/unique-booleanfield-value-in-django).
+- In order to dynamically add the genres to the navigation bar within the `base.html` drop down I needed to create a context processors. To achieve this I used the example [here](https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi/34903331).
+- To use the `OMDB API` when adding videos I needed a way to pass my script to the admin panel. Using this [example](https://stackoverflow.com/questions/16014719/adding-a-jquery-script-to-the-django-admin-interface) I was able to do so.

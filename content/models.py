@@ -27,7 +27,7 @@ class Video(models.Model):
     views = models.IntegerField(default=0)
     featured = models.BooleanField()
 
-    """ https://stackoverflow.com/questions/1455126/unique-booleanfield-value-in-django """
+    # https://stackoverflow.com/questions/1455126/unique-booleanfield-value-in-django
     def save(self, *args, **kwargs):
         if not self.featured:
             return super(Video, self).save(*args, **kwargs)
