@@ -18,11 +18,12 @@
 /* play btn */
 .fa-play {
     position: absolute;
-    right: 30%;
+    right: 35%;
     top: 45%;
     font-size: 5em;
     color: rgba(255, 255, 255, 0.8);
     z-index: 10;
+    display: none;
 }
 
 .jumbotron{
@@ -35,20 +36,20 @@
 .jumbotron h1, .jumbotron .lead{
     position: relative;
     padding-left: 10%;
-    top: 30%;
+    top: 20%;
     color: #fff;
     font-size: 4em;
 }
 
 .jumbotron .lead{
     font-size: 1.5em;
-    width: 30%;
+    width: 100%;
 }
 
 .jumbotron .btn.btn-primary.btn-lg{
     position: absolute;
     left: 10%;
-    bottom: 30%;
+    bottom: 10%;
 }
 
 /* Opacity */
@@ -145,11 +146,51 @@
     left: 90%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 425px) {
+    .fa-play {
+        right: 40%;
+    }
 
+    .jumbotron h1, .jumbotron .lead{
+        top: 35%;
+    }
+
+    .jumbotron .btn.btn-primary.btn-lg{
+        bottom: 20%;
+    }
+}
+
+@media (min-width: 576px) {
+    .jumbotron h1, .jumbotron .lead{
+        top: 30%;
+    }
+
+    .jumbotron .lead{
+        width: 30%;
+    }
+
+    .jumbotron .btn.btn-primary.btn-lg{
+        bottom: 40%;
+    }
 }
 
 @media (min-width: 768px) {
+    .fa-play {
+        right: 20%;
+    }
+
+    .jumbotron h1, .jumbotron .lead{
+        top: 30%;
+    }
+
+    .jumbotron .lead{
+        width: 70%;
+    }
+
+    .jumbotron .btn.btn-primary.btn-lg{
+        bottom: 25%;
+    }
+
     .result-box{
         width: 20%;
     }

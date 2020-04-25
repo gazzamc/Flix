@@ -244,4 +244,7 @@ def get_suggested_by_likes(request, num):
 def get_suggested_by_video(video, num):
     """ Return videos based on tags/genre """
     videos = video.tags.similar_objects()[:num]
+
+    print(videos)
+
     return videos
