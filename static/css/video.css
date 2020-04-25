@@ -1,8 +1,11 @@
 /* Video Page */
-/* #video-content{
-    width: 90%;
-    height: auto;
-} */
+.container-fluid{
+    margin-top: 10%;
+}
+
+#video-content{
+    width: 100%;
+}
 
 .player-actions{
     margin-top: 2%;
@@ -24,4 +27,27 @@
 
 .video-details{
     margin-top: 0;
+}
+
+.suggested{
+    text-align: center;
+}
+
+@media (min-width: 576px) {
+    .suggested{
+        text-align: initial;
+    }
+}
+
+@media (min-width: 768px) {
+    .container-fluid{
+        margin-top: 3%;
+    }
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+
 }

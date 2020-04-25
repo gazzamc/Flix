@@ -16,7 +16,7 @@
       rgba(0, 0, 0, 1) 100%
     ), url('../media/{{ curr_video.image_landscape }}') no-repeat center center fixed; background-size: cover;">
     <div class="row">
-        <div class="col-9 offset-2 mt-5"> 
+        <div class="col-12 col-md-9 offset-md-2 mt-5"> 
             <video id="video-content" controls autoplay>
                 <source src="{{ youtube_link }}" type="video/mp4">
                 Your browser does not support the video tag.
@@ -27,7 +27,7 @@
 <!-- Video Details -->
 <div class="container-fluid video-details">
     <div class="row">
-        <div class="col-md-10 offset-md-2 player-actions"> 
+        <div class="col-12 col-md-10 offset-md-2 player-actions"> 
         {% if watch_list != None %}
             {% if watch_list|video_in_watchlist:curr_video.title %} 
                 <i class="fas fa-times-circle delete-item-icon"></i>
@@ -55,7 +55,7 @@
             {% endif %}
         {% endif %}
         </div>
-        <div class="col-10 offset-md-2 mb-3">
+        <div class="col-12 col-md-10 offset-md-2 mb-3">
             <h1>{{ curr_video.title }}</h1>
             <p>Plot: {{ curr_video.description }}</p>
             <p>Tags: 
@@ -66,7 +66,7 @@
             <p>Genre: <a href="../search/?genre={{ genre }}">{{ curr_video.genre }}</a></p>
         </div>
         <!-- Suggestions/Related Videos -->
-        <div class="col-10 offset-md-2">
+        <div class="col-12 col-md-10 offset-md-2 suggested">
             <h2 class="mb-5">More like this:</h2>
             {% for video in videos %}
                 <div class="result-box">
