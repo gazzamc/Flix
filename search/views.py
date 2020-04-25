@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from content.models import Video, Genre, Watchlist
-from content.views import get_watchlist
+from content.views import get_watchlist, get_likelist, get_dislikelist
 
 
 def search_view(request):
@@ -9,30 +9,36 @@ def search_view(request):
     genre = request.GET.get('genre')
     tag = request.GET.get('tag')
     watch_list = get_watchlist(request)
+    like_list = get_likelist(request)
+    dislike_list = get_dislikelist(request)
     context = {}
 
     if term is not None:
-        results = search_by_term(term)
-        result_count = len(results)
+        videos = search_by_term(term)
+        result_count = len(videos)
 
         context = {
-            'results': results,
-            'search_term': term,
-            'result_count': result_count,
-            'watch_list': watch_list
+            "videos": videos,
+            "search_term": term,
+            "result_count": result_count,
+            "watch_list": watch_list,
+            "like_list": like_list,
+            "dislike_list": dislike_list,
         }
     elif genre is not None:
         genre_id = Genre.objects.get(name=genre)
 
         if genre_id is not None:
-            results = search_by_genre(genre_id.id)
-            result_count = len(results)
+            videos = search_by_genre(genre_id.id)
+            result_count = len(videos)
 
             context = {
-                'results': results,
-                'genre': genre,
-                'result_count': result_count,
-                'watch_list': watch_list
+                "videos": videos,
+                "genre": genre,
+                "result_count": result_count,
+                "watch_list": watch_list,
+                "like_list": like_list,
+                "dislike_list": dislike_list,
             }
 
     return render(request, "search.html", context)

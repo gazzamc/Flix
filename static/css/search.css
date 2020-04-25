@@ -63,6 +63,11 @@
     right: 70%;
 }
 
+/* add opacity to icons */
+.shaded-icon{
+    color: rgba(0,0,0, 0.5)!important;
+}
+
 @media (min-width: 576px) {
     .img-small{
         height: auto;
