@@ -30,7 +30,7 @@ function grab_data(imdbId){
         $("#id_title").val(data.Title);
         $("#id_description").val(data.Plot);
 
-        conCatTags = data.Year + "," + data.Director + "," + data.Actors + "," + data.Title + "," + data.Genre[0];
+        conCatTags = data.Year + " ," + data.Director + " ," + data.Actors + " ," + data.Title;
         $("#id_tags").val(conCatTags);
 
         /* If multiple split, only checking first */
