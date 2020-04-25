@@ -15,7 +15,7 @@ def plans(request):
     """Subscription plans page"""
     plans = SubPlan.objects.all()
 
-    """ Check if user is sub already """
+    # Check if user is sub already
 
     if request.method == 'POST':
         plan_type = request.POST.get('plan_type')
@@ -55,13 +55,13 @@ def checkout(request):
 
         if payment_form.is_valid():
             try:
-                """ Retrieve product """
-                """ Removed create product call due to lack of async support in django 1.11, 
-                the product wasnt being returned before the following code ran,
-                causing an error in create plan. """
+                # Retrieve product
+                # Removed create product call due to lack of async support in django 1.11,
+                # the product wasnt being returned before the following code ran,
+                # causing an error in create plan.
                 product = stripe.Product.list(limit=1)
 
-                """ Retrieve or create plan """
+                # Retrieve or create plan
                 plan_list = stripe.Plan.list()
                 plan = None
 
@@ -71,7 +71,7 @@ def checkout(request):
                             plan = plans
 
                 if plan is None:
-                    """ retrieve product name """
+                    # Retrieve product name
                     for item in product:
                         for key in item:
                             if key == 'id':
@@ -86,9 +86,9 @@ def checkout(request):
                         usage_type='licensed',
                     )
 
-                """ Retrieve or Create Customer """
+                # Retrieve or Create Customer
                 try:
-                    """ If subscriber exists Downgrade/Upgrade """
+                    # If subscriber exists Downgrade/Upgrade
                     customer = Subscriber.objects.get(user=request.user)
                     subscription_items = stripe.SubscriptionItem.list(
                         subscription=customer.stripe_sub_id,
@@ -97,10 +97,10 @@ def checkout(request):
                     for item in subscription_items:
                         sub_item_id = item.id
 
-                    """ Get Sub item ID """
+                    # Get Sub item ID
                     subscription_item = stripe.SubscriptionItem.retrieve(sub_item_id)
 
-                    """ Modify current subscription with new plan """
+                    # Modify current subscription with new plan
                     subscription = stripe.Subscription.modify(
                         subscription_item.subscription,
                         cancel_at_period_end=False,
@@ -113,13 +113,13 @@ def checkout(request):
                     )
 
                 except Subscriber.DoesNotExist:
-                    """ New Subscriber """
+                    # New Subscriber
                     customer = stripe.Customer.create(
                         email=request.user.email,
                         card=payment_form.cleaned_data['stripe_id'],
                     )
 
-                    """ Update or Create Subscription """
+                    # Update or Create Subscription
                     subscription = stripe.Subscription.create(
                         customer=customer,
                         items=[
@@ -131,16 +131,16 @@ def checkout(request):
                         )
 
                 if subscription.created:
-                    """ Get Dates for Subscription """
-                    """ https://stackoverflow.com/questions/12589764/unix-timestamp-to-datetime-in-django-with-timezone """
+                    # Get Dates for Subscription
+                    # https://stackoverflow.com/questions/12589764/unix-timestamp-to-datetime-in-django-with-timezone
                     startDate = make_aware(datetime.fromtimestamp(subscription.current_period_start))
                     endDate = make_aware(datetime.fromtimestamp(subscription.current_period_end))
 
-                    """ Check if new subscriber or modifying existing """
+                    # Check if new subscriber or modifying existing
                     try:
                         customer = Subscriber.objects.get(user=request.user)
 
-                        """ update user to subscribers table"""
+                        # Update user to subscribers table
                         Subscriber.objects.filter(pk=customer.pk).update(
                                     plan=SubPlan.objects.get(plan_name=plan_type),
                                     subscription_date=startDate,
@@ -150,7 +150,7 @@ def checkout(request):
                     except Subscriber.DoesNotExist:
                         messages.error(request, "You have successfully paid")
 
-                        """ Add user to subscribers table"""
+                        # Add user to subscribers table
                         new_sub = Subscriber.objects.create(
                                     user=request.user,
                                     plan=SubPlan.objects.get(plan_name=plan_type),
@@ -162,7 +162,7 @@ def checkout(request):
 
                         new_sub.save()
 
-                    """ Clear selected plan from session """
+                    # Clear selected plan from session
                     request.session['plan_type'] = ''
                     request.session['plan_price'] = ''
                     return redirect(reverse('profile'))
@@ -175,7 +175,7 @@ def checkout(request):
             messages.error(request, "We were unable to take a payment with that card!")
     else:
 
-        """ Get selected plan from session """
+        # Get selected plan from session
         plan_type = request.session.get('plan_type')
         plan_price = request.session.get('plan_price')
 
@@ -198,13 +198,13 @@ def cancel_sub(request):
     try:
         subscriber = Subscriber.objects.get(user=request.user)
 
-        """ https://stackoverflow.com/questions/8571383/how-to-identify-button-click-event-of-template-page-in-view-page-of-django """
+        # https://stackoverflow.com/questions/8571383/how-to-identify-button-click-event-of-template-page-in-view-page-of-django
         if request.POST.get('Yes'):
-            """ Get user sub.customer id """
+            # Get user sub.customer id
             subscription_id = subscriber.stripe_sub_id
             customer_id = subscriber.stripe_cus_id
 
-            """ Delete from Stripe """
+            # Delete from Stripe
             stripe.Subscription.delete(subscription_id)
             customer = stripe.Customer.delete(customer_id)
 

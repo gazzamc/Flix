@@ -2,8 +2,8 @@ import string
 import random
 from django.utils.text import slugify
 
-""" https://gist.github.com/ishwar6/a0beb5e7cb04b56b931877071cdc853c """
-""" https://www.youtube.com/watch?v=d5LYM3C_A98 """
+# https://gist.github.com/ishwar6/a0beb5e7cb04b56b931877071cdc853c
+# https://www.youtube.com/watch?v=d5LYM3C_A98
 
 
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):

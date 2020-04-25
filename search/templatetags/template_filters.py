@@ -3,8 +3,8 @@ from content.models import Watchlist, Likelist, Dislikelist
 
 register = template.Library()
 
-""" https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/ """
-""" https://stackoverflow.com/questions/47792373/invalid-filter-error-in-django-custom-template-filter """
+# https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/
+# https://stackoverflow.com/questions/47792373/invalid-filter-error-in-django-custom-template-filter
 
 
 @register.filter()
