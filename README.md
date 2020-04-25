@@ -6,7 +6,7 @@ Full Stack Frameworks with Django Milestone Project - Code Institute
 The is a content streaming website built using `Django`, `Python`, `Javascript` and `Bootstrap`. 
 The user can like, dislike and add videos to their watchlist. Using the `Stripe` API the user has a choice of 
 different tiers they can subscribe to in order to view the content. 
-All video source URL is fetched from youtube using the `youtube-dl` module.
+All the video URLs are fetched from youtube using the `youtube-dl` module.
 
 ## Table Of Contents:
 - [Demo](#demo)<br>
@@ -147,7 +147,7 @@ Below you can find the schema of each table along with the datatypes for each fi
 ## Credits
 
 ### Content
-- All content suchas titles, descriptions were retireved from IMDB using `OMDB API`.
+- All content such as titles, descriptions were retireved from IMDB using `OMDB API`.
 
 ### Media
 - The videos are all retrieved from youtube using `youtube-dl`. I don't claim to own any of these and are only being used for educational purposes.
@@ -157,5 +157,10 @@ Below you can find the schema of each table along with the datatypes for each fi
 
 ### Acknowledgements
 - The accounts app I used was sourced and modified from Code Institute.
-- In order to register the models in the admin panel I used example [here](https://djangobook.com/mdj2-django-admin/).
+- In order to register the models in the admin panel I used the example [here](https://djangobook.com/mdj2-django-admin/).
 - To filter the items using the fields of the models I used this example [here](https://stackoverflow.com/questions/48665353/django-1-11-admin-list-filter-to-include-fields-in-another-model).
+- In order to get a random video if a featured video wasnt supplied I used this example [here](https://stackoverflow.com/questions/22816704/django-get-a-random-object/22816927).
+- When showing the home view I needed to get join several querysets from seperate genres, I was able to do so using this example [here](https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django).
+- As I'm using `django-taggit` in order to add tags to videos I needed a way to retrieve the tags, using this example [here](https://stackoverflow.com/questions/11321906/in-django-taggit-how-to-get-tags-for-objects-that-are-associated-with-a-specifi) I was able to do so.
+- This example [here](https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django) gave me a good idea on how to implement a watch, like and dislike list for the user.
+- I used this [example](https://stackoverflow.com/questions/54945781/django-how-to-get-url-path) to get the current url when adding/removing liked/disliked videos.

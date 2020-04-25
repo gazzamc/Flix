@@ -15,12 +15,12 @@ def content_view(request):
     """ Display all video content by genre"""
     subscriber = Subscriber.objects.filter(user=request.user.id)
     if subscriber:
-        """ Get Featured Content """
+        # Get Featured Content
         try:
             featured_vid = Video.objects.get(featured=True)
         except Video.DoesNotExist:
-            """ If featured isnt set grab random """
-            """ https://stackoverflow.com/questions/22816704/django-get-a-random-object/22816927 """
+            # If featured isnt set grab random
+            # https://stackoverflow.com/questions/22816704/django-get-a-random-object/22816927
             videos = Video.objects.all()
             featured_vid = random.choice(videos)
 
@@ -31,7 +31,7 @@ def content_view(request):
         dislike_list = get_dislikelist(request)
         final_video_list = []
 
-        """ Get 20 videos from each category and combine queryset """
+        # Get 20 videos from each category and combine queryset
         for genre in genres:
 
             videos = Video.objects.filter(genre=genre)[:20]
@@ -39,7 +39,7 @@ def content_view(request):
             if all_videos is None:
                 all_videos = videos
             else:
-                """ https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django """
+                # https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django
                 final_video_list = list(chain(videos, final_video_list))
 
         content = {
@@ -125,9 +125,8 @@ def get_watchlist(request):
 @login_required
 def add_to_watchlist(request, slug):
     """ Add items to user watch list """
-    """ https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django """
-
-    """ Check if item exist, if so remove """
+    # https://stackoverflow.com/questions/56580696/how-to-implement-add-to-wishlist-for-a-product-in-django
+    # Check if item exist, if so remove
     try:
         item = Watchlist.objects.get(slug=slug)
         item.delete()
@@ -149,28 +148,28 @@ def add_to_watchlist(request, slug):
 @login_required
 def like_dislike_video(request, slug):
     """ Add items to user like/dislike lists """
-    """ https://stackoverflow.com/questions/54945781/django-how-to-get-url-path """
+    # https://stackoverflow.com/questions/54945781/django-how-to-get-url-path
     current_url = resolve(request.path_info).url_name
     video = get_object_or_404(Video, slug=slug)
 
     if current_url == 'like':
-        """ Check if item is disliked """
+        # Check if item is disliked
         try:
-            """ Check if item is in dislike list
-                if so remove and add to likes """
+            # Check if item is in dislike list
+            # if so remove and add to likes
             item = Dislikelist.objects.get(slug=slug)
             item.delete()
 
         except Dislikelist.DoesNotExist:
-            """ Do nothing """
+            pass
 
-        """ check if already in likes, then remove """
+        # check if already in likes, then remove
         try:
             item = Likelist.objects.get(slug=slug)
             item.delete()
 
         except Likelist.DoesNotExist:
-            """ If not add to likes """
+            # If not add to likes
             Likelist.objects.get_or_create(
                 item=video,
                 slug=video.slug,
@@ -178,15 +177,13 @@ def like_dislike_video(request, slug):
             )
 
     elif current_url == 'dislike':
-        """ Check if item is liked """
         try:
             item = Likelist.objects.get(slug=slug)
             item.delete()
 
         except Likelist.DoesNotExist:
-            """ Do Nothing """
+            pass
 
-        """ check if already in Dislikes, then remove """
         try:
             item = Dislikelist.objects.get(slug=slug)
             item.delete()
