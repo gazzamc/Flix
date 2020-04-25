@@ -1,5 +1,27 @@
 /* Video Page */
-#video-content{
+/* #video-content{
     width: 90%;
     height: auto;
+} */
+
+.player-actions{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.player-actions .fas.fa-thumbs-up,
+.player-actions .fas.fa-thumbs-down,
+.player-actions .fas.fa-plus,
+.player-actions .fas.fa-times-circle{
+    position: initial;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.shaded-icon{
+    color: rgba(255,255,255, 0.5)!important;
+}
+
+.video-details{
+    margin-top: 0;
 }

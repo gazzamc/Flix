@@ -50,6 +50,13 @@ $(".delete-item-icon").click(function(){
     let fullUrl = baseUrl + "/content/watch-list/";
     let slug = $(this).siblings().find("img").attr("alt");
 
+    /* If slug undefined we're on video page */
+    if(slug == undefined){
+        path = window.location.pathname
+        slug = path.split('/')[2]
+    }
+
+
     /* Check if last item if so refresh */
     let count = $('.result-box').length
 
@@ -77,6 +84,12 @@ $(".delete-item-icon").click(function(){
 /* Likes */
 $(".fa-thumbs-up, .fa-thumbs-down").click(function(){
     let slug = $(this).siblings().find("img").attr("alt");
+
+    /* If slug undefined we're on video page */
+    if(slug == undefined){
+        path = window.location.pathname
+        slug = path.split('/')[2]
+    }
 
     if($(this).hasClass("fa-thumbs-up")){
         /* Add To Likes */

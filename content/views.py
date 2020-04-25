@@ -69,13 +69,9 @@ def video_view(request, slug):
         videos = get_suggested_by_video(video, 3)
 
         content = {
-            "title": video.title,
+            "curr_video": video,
             "tags": tags,
-            "slug": video.slug,
             "youtube_link": get_video_url(video.youtube_link),
-            "description": video.description,
-            "genre": video.genre,
-            "video_img": video.image_landscape,
             "videos": videos
         }
 
