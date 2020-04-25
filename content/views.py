@@ -90,9 +90,19 @@ def video_view(request, slug):
 def watchlist_view(request):
     """ Get User Watch List videos """
     videos = get_watchlist(request)
+    watch_list = get_watchlist(request)
+    like_list = get_likelist(request)
+    dislike_list = get_dislikelist(request)
+
+    print(like_list)
+    print(dislike_list)
+    print(videos)
 
     context = {
-        'videos': videos
+        'videos': videos,
+        "watch_list": watch_list,
+        "like_list": like_list,
+        "dislike_list": dislike_list,
     }
 
     return render(request, 'watch-list.html', context)
