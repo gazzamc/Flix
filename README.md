@@ -132,7 +132,7 @@ Below you can find the schema of each table along with the datatypes for each fi
 ### Manual Testing
 
 
-#### Bugs
+#### Known bugs
 - When clicking the navigation items occasionally the background of the icon turns white.
 - Sometimes `youtube-dl` has an issue retrieving the video, to counteract this I've returned `None` so that only the background image shows.
 
@@ -171,4 +171,4 @@ Below you can find the schema of each table along with the datatypes for each fi
 - In order to store the dates returned by Stripe I needed to convert the date from Unix timestamp using this [example](https://stackoverflow.com/questions/12589764/unix-timestamp-to-datetime-in-django-with-timezone).
 - To identify which button was pressed in a form I used this [example](https://stackoverflow.com/questions/8571383/how-to-identify-button-click-event-of-template-page-in-view-page-of-django).
 - In order to filter videos in the django templates I needed to create custom template filters. I used these examples [here](https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/) and [here](https://stackoverflow.com/questions/47792373/invalid-filter-error-in-django-custom-template-filter).
-- When creating new video entries I wanted the slug for each video to be generated using that videos title. In order to achieve this I used the [this](https://gist.github.com/ishwar6/a0beb5e7cb04b56b931877071cdc853c) example shown this [video](https://www.youtube.com/watch?v=d5LYM3C_A98).
+- When creating new video entries I wanted the slug for each video to be generated using that videos title. In order to achieve this I used the [this](https://gist.github.com/ishwar6/a0beb5e7cb04b56b931877071cdc853c) example shown in this [video](https://www.youtube.com/watch?v=d5LYM3C_A98).

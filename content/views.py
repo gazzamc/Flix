@@ -7,6 +7,7 @@ from utils.video import get_video_url
 from accounts.models import Subscriber
 from itertools import chain
 from taggit.models import Tag
+from collections import Counter
 import random
 
 
@@ -93,10 +94,6 @@ def watchlist_view(request):
     watch_list = get_watchlist(request)
     like_list = get_likelist(request)
     dislike_list = get_dislikelist(request)
-
-    print(like_list)
-    print(dislike_list)
-    print(videos)
 
     context = {
         'videos': videos,
@@ -224,4 +221,40 @@ def get_dislikelist(request):
     if len(videos) == 0:
         videos = None
 
+    return videos
+
+
+def get_suggested_by_likes(request):
+    """ Get videos based on users likes """
+    videos = Video.objects.none()
+    tag_list = []
+    temp_tag_list = []
+
+    # Get lists
+    like_list = get_likelist(request)
+
+    # Most common tags from likes
+    for video in like_list:
+        tags = Tag.objects.filter(video__title=video)
+
+        # Add tags to temp list
+        for tag in tags:
+            temp_tag_list.append(tag.name)
+
+    # Count duplicates
+    count = Counter(temp_tag_list)
+    for item in count:
+        if count[item] > 1:
+            tag_list.append(item)
+
+    # Get videos based on tags
+    # https://django-taggit.readthedocs.io/en/latest/api.html#filtering
+    videos = Video.objects.filter(tags__name__in=tag_list)
+
+    return videos
+
+
+def get_suggested_by_video(video, num):
+    """ Return videos based on tags/genre """
+    videos = video.tags.similar_objects()[:num]
     return videos
