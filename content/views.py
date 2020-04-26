@@ -79,7 +79,6 @@ def video_view(request, slug):
     else:
         return redirect(reverse('plans'))
 
-
 @login_required
 def watchlist_view(request):
     """ Get User Watch List videos """
