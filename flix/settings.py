@@ -29,7 +29,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8080-d933fa3b-77a3-460d-9ce4-116eb9736980.ws-eu01.gitpod.io']
+ALLOWED_HOSTS = [
+                    '8080-d933fa3b-77a3-460d-9ce4-116eb9736980.ws-eu01.gitpod.io',
+                    'flix-streaming.herokuapp.com']
 
 
 # Application definition
