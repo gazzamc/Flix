@@ -11,6 +11,10 @@
     display: inline;
 }
 
+.search-results{
+    text-align: center;
+}
+
 /* images apart from home */
 .img-small{
     height: auto;
@@ -78,6 +82,10 @@
 }
 
 @media (min-width: 768px) {
+    .search-results{
+        text-align: left;
+    }
+
     .container-fluid{
         margin-top: 20%;
     }

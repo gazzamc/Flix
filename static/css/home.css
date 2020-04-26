@@ -48,7 +48,7 @@
 
 .jumbotron .btn.btn-primary.btn-lg{
     position: absolute;
-    left: 10%;
+    left: 27%;
     bottom: 10%;
 }
 
@@ -157,6 +157,7 @@
 
     .jumbotron .btn.btn-primary.btn-lg{
         bottom: 20%;
+        left: 10%;
     }
 }
 
@@ -176,7 +177,7 @@
 
 @media (min-width: 768px) {
     .fa-play {
-        right: 20%;
+        right: 15%;
     }
 
     .jumbotron h1, .jumbotron .lead{

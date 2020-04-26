@@ -56,38 +56,38 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <div class="col-md-8 offset-md-2 text-center">
+                <div class="col-md-8 offset-md-2 search-results">
                     <input class="form-control mr-sm-2" id="fullsearchbox" type="search" placeholder="Search" aria-label="Search">
-                    <h2 class="m-5">{{ result_count }} results found for search term "{{ search_term }}"</h2>
+                    <h2 class="m-5 text-center">{{ result_count }} results found for search term "{{ search_term }}"</h2>
                     {% for video in videos %}
                         <div class="result-box">
                             <a href="../content/{{ video.slug }}"><img src="/media/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
-                                {% if watch_list != None %}
-                                    {% if watch_list|video_in_watchlist:video.title %} 
-                                        <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
-                                    {% else %}
-                                        <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
-                                    {% endif %}
+                            {% if watch_list != None %}
+                                {% if watch_list|video_in_watchlist:video.title %} 
+                                    <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
                                 {% else %}
                                     <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
                                 {% endif %}
-                                {% if like_list == None and dislike_list == None %}
-                                    <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
-                                    <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
-                                {% else %}
-                                    {% if like_list|video_in_likelist:video.title or dislike_list|video_in_dislikelist:video.title %}
-                                        {% if like_list|video_in_likelist:video.title %}
-                                            <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
-                                            <i class="fas fa-thumbs-down dislike-item-icon shaded-icon" style="display: none;"></i>
-                                        {% else %}
-                                            <i class="fas fa-thumbs-up like-item-icon shaded-icon" style="display: none;"></i>
-                                            <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
-                                        {% endif %}
-                                    {% else %}
+                            {% else %}
+                                <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
+                            {% endif %}
+                            {% if like_list == None and dislike_list == None %}
+                                <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
+                            {% else %}
+                                {% if like_list|video_in_likelist:video.title or dislike_list|video_in_dislikelist:video.title %}
+                                    {% if like_list|video_in_likelist:video.title %}
                                         <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                        <i class="fas fa-thumbs-down dislike-item-icon shaded-icon" style="display: none;"></i>
+                                    {% else %}
+                                        <i class="fas fa-thumbs-up like-item-icon shaded-icon" style="display: none;"></i>
                                         <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
                                     {% endif %}
+                                {% else %}
+                                    <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
+                                    <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
                                 {% endif %}
+                            {% endif %}
                         </div>
                     {% endfor %}
                 </div>
