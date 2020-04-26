@@ -28,6 +28,8 @@ def content_view(request):
 
         genres = Genre.objects.all()
         all_videos = Video.objects.none()
+        watched_list = get_watched_list(request)
+        watching_list = get_watched_list(request)
         final_video_list = []
 
         # Get 20 videos from each category and combine queryset
@@ -44,6 +46,8 @@ def content_view(request):
         content = {
             "videos": final_video_list,
             "genres": genres,
+            "watched_list": watched_list,
+            "watching_list": watching_list,
             "video_url": get_video_url(featured_vid.youtube_link),
             "video_title": featured_vid.title,
             "video_desc": featured_vid.description,
@@ -63,6 +67,7 @@ def video_view(request, slug):
     subscriber = Subscriber.objects.filter(user=request.user.id)
     if subscriber:
         video = get_object_or_404(Video, slug=slug)
+        watching_list = get_watching_list(request)
 
         # Add view to video
         curr_views = video.views
@@ -75,8 +80,17 @@ def video_view(request, slug):
         # Get suggested videos
         videos = get_suggested_by_video(video, 3)
 
+        # Check if in watching list
+        # if there add start time
+        start_time = None
+        for item in watching_list:
+            if item.slug == slug:
+                v = Watching.objects.get(slug=item.slug)
+                start_time = v.time
+
         content = {
             "curr_video": video,
+            "start_time": start_time,
             "tags": tags,
             "youtube_link": get_video_url(video.youtube_link),
             "videos": videos
@@ -264,6 +278,34 @@ def get_likelist(request):
 def get_dislikelist(request):
     """ Get videos in user watch list """
     items = Dislikelist.objects.filter(user=request.user)
+    videos = Video.objects.none()
+
+    for item in items:
+        videos = Video.objects.filter(title=item) | videos
+
+    if len(videos) == 0:
+        videos = None
+
+    return videos
+
+
+def get_watched_list(request):
+    """ Get videos in user watched list """
+    items = Watched.objects.filter(user=request.user)
+    videos = Video.objects.none()
+
+    for item in items:
+        videos = Video.objects.filter(title=item) | videos
+
+    if len(videos) == 0:
+        videos = None
+
+    return videos
+
+
+def get_watching_list(request):
+    """ Get videos in user watching list """
+    items = Watching.objects.filter(user=request.user)
     videos = Video.objects.none()
 
     for item in items:

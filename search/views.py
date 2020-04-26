@@ -56,6 +56,6 @@ def search_by_term(term):
 
 
 def search_by_tag(tag):
-    """ Get Videos by term """
+    """ Get Videos by tag """
     videos = Video.objects.filter(tags__name__in=[tag])
     return videos

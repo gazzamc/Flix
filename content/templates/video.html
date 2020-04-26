@@ -2,12 +2,19 @@
 {% load staticfiles %}
 {% block page_title %}{{ title }}{% endblock %}
 <!-- Load custom filters -->
-{% load video_in_watchlist from template_filters %}
-{% load video_in_likelist from template_filters %}
-{% load video_in_dislikelist from template_filters %}
+{% load video_in_list from template_filters %}
 {% block custom_css %}
     <link rel="stylesheet" href="{% static 'css/search.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/video.css' %}" type="text/css">
+{% endblock %}
+{% block head_js %}
+    <script>
+        {% if start_time == None %}
+            var videoStartTime = 0;
+        {% else %}
+            var videoStartTime = {{ start_time }};
+        {% endif %}
+    </script>
 {% endblock %}
 {% block content %}
 <!-- Video Player --> 
@@ -29,7 +36,7 @@
     <div class="row">
         <div class="col-12 col-md-10 offset-md-2 player-actions"> 
         {% if watch_list != None %}
-            {% if watch_list|video_in_watchlist:curr_video.title %} 
+            {% if watch_list|video_in_list:curr_video.title %} 
                 <i class="fas fa-times-circle delete-item-icon"></i>
             {% else %}
                 <i class="fas fa-plus delete-item-icon"></i>
@@ -41,8 +48,8 @@
             <i class="fas fa-thumbs-up like-item-icon"></i>
             <i class="fas fa-thumbs-down dislike-item-icon"></i>
         {% else %}
-            {% if like_list|video_in_likelist:curr_video.title or dislike_list|video_in_dislikelist:curr_video.title %}
-                {% if like_list|video_in_likelist:curr_video.title %}
+            {% if like_list|video_in_list:curr_video.title or dislike_list|video_in_list:curr_video.title %}
+                {% if like_list|video_in_list:curr_video.title %}
                     <i class="fas fa-thumbs-up like-item-icon"></i>
                     <i class="fas fa-thumbs-down dislike-item-icon shaded-icon"></i>
                 {% else %}
@@ -75,7 +82,7 @@
                     <div class="result-box">
                         <a href="../content/{{ video.slug }}"><img src="/media/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
                         {% if watch_list != None %}
-                            {% if watch_list|video_in_watchlist:video.title %} 
+                            {% if watch_list|video_in_list:video.title %} 
                                 <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
                             {% else %}
                                 <i class="fas fa-plus delete-item-icon" style="display: none;"></i>
@@ -87,8 +94,8 @@
                             <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
                             <i class="fas fa-thumbs-down dislike-item-icon" style="display: none;"></i>
                         {% else %}
-                            {% if like_list|video_in_likelist:video.title or dislike_list|video_in_dislikelist:video.title %}
-                                {% if like_list|video_in_likelist:video.title %}
+                            {% if like_list|video_in_list:video.title or dislike_list|video_in_list:video.title %}
+                                {% if like_list|video_in_list:video.title %}
                                     <i class="fas fa-thumbs-up like-item-icon" style="display: none;"></i>
                                     <i class="fas fa-thumbs-down dislike-item-icon shaded-icon" style="display: none;"></i>
                                 {% else %}

@@ -1,5 +1,6 @@
 from .models import Genre
-from content.views import get_dislikelist, get_likelist, get_watchlist
+from content.views import (get_dislikelist, get_likelist,
+                           get_watchlist)
 
 # https://stackoverflow.com/questions/34902707/how-can-i-pass-data-to-django-layouts-like-base-html-without-having-to-provi/34903331
 

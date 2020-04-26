@@ -1,9 +1,15 @@
 /* Retrieve Video timestamp and update db */
 var videoCheck;
+var video = document.getElementById("video-content");
 
 $( document ).ready(function() {
+    setStartTime();
     startVideoCheck();
 });
+
+function setStartTime(){
+    video.currentTime = videoStartTime;
+}
 
 function startVideoCheck(){
     videoCheck = setInterval(addVideoToWatching, 10000);
@@ -16,7 +22,6 @@ function addVideoToWatching(){
     path = window.location.pathname
     slug = path.split('/')[2]
 
-    video = document.getElementById("video-content");
     duration = Math.round(video.duration);
     currTime = Math.round(video.currentTime);
 
