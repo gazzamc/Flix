@@ -68,6 +68,26 @@ class Dislikelist(models.Model):
         return self.item.title
 
 
+class Watching(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Video, on_delete=models.CASCADE)
+    time = models.IntegerField()
+    duration = models.IntegerField()
+    slug = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.item.title
+
+
+class Watched(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Video, on_delete=models.CASCADE)
+    slug = models.CharField(max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.item.title
+
+
 def slug_generator(sender, instance, *args, **kwargs):
     """ Generate unique slug """
     if not instance.slug:

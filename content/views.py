@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Genre, Video, Watchlist, Likelist, Dislikelist
+from .models import (Genre, Video, Watchlist, Likelist,
+                     Dislikelist, Watched, Watching)
 from django.contrib.auth.decorators import login_required
 from django.urls import resolve
 from django.contrib import messages
@@ -62,6 +63,12 @@ def video_view(request, slug):
     subscriber = Subscriber.objects.filter(user=request.user.id)
     if subscriber:
         video = get_object_or_404(Video, slug=slug)
+
+        # Add view to video
+        curr_views = video.views
+        Video.objects.filter(pk=video.pk).update(
+            views=curr_views + 1)
+
         # https://stackoverflow.com/questions/11321906/in-django-taggit-how-to-get-tags-for-objects-that-are-associated-with-a-specifi
         tags = Tag.objects.filter(video__title=video.title)
 
@@ -78,6 +85,64 @@ def video_view(request, slug):
         return render(request, 'video.html', content)
     else:
         return redirect(reverse('plans'))
+
+
+@login_required
+def add_to_watching_list(request, slug):
+    """ Add video to currently watching list """
+    try:
+        time = int(request.GET.get('t'))
+        duration = int(request.GET.get('d'))
+    except ValueError:
+        return redirect(reverse('index'))
+
+    # Check if already exists then add/update
+    try:
+        video = Watching.objects.get(slug=slug)
+        Watching.objects.filter(slug=slug).update(
+            time=time,
+            duration=duration,
+        )
+    except Watching.DoesNotExist:
+        video = Video.objects.get(slug=slug)
+
+        Watching.objects.get_or_create(
+                item=video,
+                slug=video.slug,
+                time=time,
+                duration=duration,
+                user=request.user,
+            )
+
+    return redirect(reverse('index'))
+
+
+@login_required
+def remove_from_watching_list(request, slug):
+    """ Remove video from currently watching and add
+        to watched list """
+
+    # Check if already exists if not add.
+    try:
+        video = Watched.objects.get(slug=slug)
+        return redirect(reverse('index'))
+    except Watched.DoesNotExist:
+        # Remove from watching
+        try:
+            video = Watching.objects.get(slug=slug)
+            video.delete()
+        except Watching.DoesNotExist:
+            pass
+  
+        video = Video.objects.get(slug=slug)
+        Watched.objects.get_or_create(
+                item=video,
+                slug=video.slug,
+                user=request.user,
+            )
+
+    return redirect(reverse('index'))
+
 
 @login_required
 def watchlist_view(request):
