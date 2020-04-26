@@ -37,7 +37,7 @@ def content_view(request):
         try:
             liked_video = random.choice(liked_videos)
             liked_video_list = get_suggested_by_video(liked_video, 20)
-            
+
         except TypeError:
             liked_video = None
             liked_video_list = None
@@ -95,10 +95,11 @@ def video_view(request, slug):
         # Check if in watching list
         # if there add start time
         start_time = None
-        for item in watching_list:
-            if item.slug == slug:
-                v = Watching.objects.get(slug=item.slug)
-                start_time = v.time
+        if watching_list is not None:
+            for item in watching_list:
+                if item.slug == slug:
+                    v = Watching.objects.get(slug=item.slug)
+                    start_time = v.time
 
         content = {
             "curr_video": video,
