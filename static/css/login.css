@@ -1,12 +1,18 @@
 .container{
     margin-top: 20vh;
-    background-color: #fff;
-    color: #000;
+    /* background-color: #fff; */
+    color: #fff;
     border-radius: 5px;
-    min-height: 60vh;
+    min-height: 72vh;
 }
 
 form{
     margin-bottom: 4%;
     margin-top: 4%;
+}
+
+form .btn.btn-primary{
+    background-color: #f9f9f9;
+    border: none;
+    color: #000;
 }
