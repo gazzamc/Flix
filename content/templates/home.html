@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
 <!-- Jumbotron/ Featured -->
-<div class="container-fluid mb-3" id="featured-top" style="background:url('media/{{ video_img }}') no-repeat center center fixed; background-size: cover;">
+<div class="container-fluid mb-3" id="featured-top" style="background:url('{{ MEDIA_URL }}{{ video_img }}') no-repeat center center fixed; background-size: cover;">
     <div class="row">
         <div class="col-12 p-0">
             <div class="jumbotron">
@@ -36,7 +36,7 @@
                 <div class="column" id="continue">
                     {% for video in watching_list %}
                             <div class="result-box">
-                                <a href="/content/{{ video.slug }}"><img src="media/{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                <a href="/content/{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
                                 {% if watch_list != None %}
                                     {% if watch_list|video_in_list:video.title %} 
                                         <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
@@ -79,7 +79,7 @@
                         <div class="column" id="liked">
                             {% for video in liked_video_list %}
                                     <div class="result-box">
-                                        <a href="/content/{{ video.slug }}"><img src="media/{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                        <a href="/content/{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
                                         {% if watch_list != None %}
                                             {% if watch_list|video_in_list:video.title %} 
                                                 <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
@@ -123,7 +123,7 @@
                             {% for video in most_popular %}
                                     <div class="result-box">
                                         <p class="number">{{ forloop.counter }}</p>
-                                        <a href="/content/{{ video.slug }}"><img src="media/{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                        <a href="/content/{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
                                         {% if watch_list != None %}
                                             {% if watch_list|video_in_list:video.title %} 
                                                 <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
@@ -164,7 +164,7 @@
                     {% for video in videos %}
                         {% if video.genre == genre %}
                             <div class="result-box">
-                                <a href="/content/{{ video.slug }}"><img src="media/{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
+                                <a href="/content/{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
                                 {% if watch_list != None %}
                                     {% if watch_list|video_in_list:video.title %} 
                                         <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
