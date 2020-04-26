@@ -34,8 +34,13 @@ def content_view(request):
         final_video_list = []
 
         # Grab random liked video for suggestion
-        liked_video = random.choice(liked_videos)
-        liked_video_list = get_suggested_by_video(liked_video, 20)
+        try:
+            liked_video = random.choice(liked_videos)
+            liked_video_list = get_suggested_by_video(liked_video, 20)
+            
+        except TypeError:
+            liked_video = None
+            liked_video_list = None
 
         # Get 20 videos from each category and combine queryset
         for genre in genres:

@@ -1,3 +1,8 @@
+html {
+    /* Edge Scrollbar fix */
+    -ms-overflow-style: none;
+}
+
 /* Navbar */
 .showNavBar{
     background-color: rgba(52, 58, 64, 0)!important;
@@ -12,6 +17,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+    -o-object-fit: cover;
     object-fit: cover;
 }
 
@@ -68,9 +74,6 @@
 /* https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll */
 /* https://stackoverflow.com/questions/50320756/how-to-stop-3-images-side-by-side-inside-a-div-from-wrapping-to-the-next-line */
 .column {
-    /* display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex; */
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -85,11 +88,14 @@
     scroll-behavior: smooth;
     padding: 1%;
     white-space: nowrap;
+    
+    /* Firefox fix */
+    scrollbar-color: transparent transparent;
 }
 
-.column::-webkit-scrollbar {
-    width: 0px;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+.column::-webkit-scrollbar{
+    width: 0px;
+    background: rgba(255,255,255, 0); 
 }
 
 .result-box{

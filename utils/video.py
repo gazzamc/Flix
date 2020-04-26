@@ -7,8 +7,13 @@ def get_video_url(yt_link):
         'quiet': True
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        video = ydl.extract_info(yt_link, download=False)
-        formats = video.get('formats', [video])
+
+        try:
+            video = ydl.extract_info(yt_link, download=False)
+            formats = video.get('formats', [video])
+
+        except youtube_dl.DownloadError:
+            return None
 
     for f in formats:
         """ Get video url """
