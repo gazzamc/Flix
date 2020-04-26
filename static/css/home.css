@@ -212,6 +212,10 @@
 }
 
 @media (min-width: 1200px) {
+    .jumbotron .lead{
+        width: 40%;
+    }
+
     .fas.fa-angle-left, .fas.fa-angle-right{
         position: absolute;
         left: 2%;

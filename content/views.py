@@ -29,8 +29,13 @@ def content_view(request):
         genres = Genre.objects.all()
         all_videos = Video.objects.none()
         watched_list = get_watched_list(request)
-        watching_list = get_watched_list(request)
+        watching_list = get_watching_list(request)
+        liked_videos = get_likelist(request)
         final_video_list = []
+
+        # Grab random liked video for suggestion
+        liked_video = random.choice(liked_videos)
+        liked_video_list = get_suggested_by_video(liked_video, 20)
 
         # Get 20 videos from each category and combine queryset
         for genre in genres:
@@ -48,6 +53,8 @@ def content_view(request):
             "genres": genres,
             "watched_list": watched_list,
             "watching_list": watching_list,
+            "liked_video": liked_video,
+            "liked_video_list": liked_video_list,
             "video_url": get_video_url(featured_vid.youtube_link),
             "video_title": featured_vid.title,
             "video_desc": featured_vid.description,
