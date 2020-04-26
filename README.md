@@ -97,7 +97,90 @@ The website must be user friendly and easy to navigate in order for the user to 
 
 
 ## Database schema
-Below you can find the schema of each table along with the datatypes for each field.
+Below you can find the schema of each Model along with the datatypes for each field.
+
+**Accounts Models**
+
+|               |  SubPlan                                              |
+|:-------------:|:-----------------------------------------------------:|
+| Fields 	    |       Type       	                                    |
+| plan_name     |  models.CharField(max_length=50) 	                    | 
+| plan_price    |  models.DecimalField(max_digits=5, decimal_places=2)  |
+
+
+|                       |  Subscriber                                           |
+|:---------------------:|:-----------------------------------------------------:|
+| Fields 	            |       Type       	                                    |
+| user                  |  models.ForeignKey(User, on_delete=models.CASCADE) 	| 
+| plan                  |  models.DecimalField(max_digits=5, decimal_places=2)  |
+| stripe_sub_id         |  models.CharField(max_length=50) 	                    | 
+| stripe_cus_id         |  models.CharField(max_length=50)                      |
+| subscription_date     |  models.DateField() 	                                | 
+| subscription_end_date |  models.DateField()                                   |
+
+
+**Content Models**
+
+|               |                           Genre                       |
+|:-------------:|:-----------------------------------------------------:|
+| Fields 	    |       Type       	                                    |
+| name          |  models.CharField(max_length=50) 	                    | 
+
+
+|                 |                         Video                          |
+|:---------------:|:------------------------------------------------------:|
+| Fields 	      |       Type       	                                   |
+| title           |  models.CharField(max_length=50) 	                   | 
+| slug            |  models.SlugField(max_length=50, null=True, blank=True)|
+| description     |  models.TextField(max_length=300)	                   | 
+| youtube_link    |  models.CharField(max_length=100)                      |
+| genre           |  models.ForeignKey(Genre, on_delete=models.CASCADE)    | 
+| imdb_link       |  models.CharField(max_length=100)                      |
+| tags            |  TaggableManager() 	                                   | 
+| image_cover     |  models.ImageField(upload_to='img')                    |
+| image_landscape |  models.ImageField(upload_to='img')	                   | 
+| views           |  models.IntegerField(default=0)                        |
+| featured        |  models.BooleanField()                                 |
+
+|                 |                         Watchlist                      |
+|:---------------:|:------------------------------------------------------:|
+| Fields 	      |       Type       	                                   |
+| user            |  models.ForeignKey(User, on_delete=models.CASCADE) 	   | 
+| item            |  models.ForeignKey(Video, on_delete=models.CASCADE)    |
+| slug            |  models.CharField(max_length=50, null=True, blank=True)| 
+| added_date      |  models.DateTimeField(auto_now_add=True)               |
+
+
+|                 |                         Likelist                       |
+|:---------------:|:------------------------------------------------------:|
+| Fields 	      |       Type       	                                   |
+| user            |  models.ForeignKey(User, on_delete=models.CASCADE) 	   | 
+| item            |  models.ForeignKey(Video, on_delete=models.CASCADE)    |
+| slug            |  models.CharField(max_length=50, null=True, blank=True)| 
+
+
+|                 |                         Dislikelist                    |
+|:---------------:|:------------------------------------------------------:|
+| Fields 	      |       Type       	                                   |
+| user            |  models.ForeignKey(User, on_delete=models.CASCADE) 	   | 
+| item            |  models.ForeignKey(Video, on_delete=models.CASCADE)    |
+| slug            |  models.CharField(max_length=50, null=True, blank=True)| 
+
+
+|                 |                         Watching                       |
+|:---------------:|:------------------------------------------------------:|
+| Fields 	      |       Type       	                                   |
+| user            |  models.ForeignKey(User, on_delete=models.CASCADE) 	   | 
+| item            |  models.ForeignKey(Video, on_delete=models.CASCADE)    |
+| slug            |  models.CharField(max_length=50, null=True, blank=True)| 
+
+
+|                 |                         Watched                        |
+|:---------------:|:------------------------------------------------------:|
+| Fields 	      |       Type       	                                   |
+| user            |  models.ForeignKey(User, on_delete=models.CASCADE) 	   | 
+| item            |  models.ForeignKey(Video, on_delete=models.CASCADE)    |
+| slug            |  models.CharField(max_length=50, null=True, blank=True)| 
 
 
 ## Features
@@ -109,23 +192,35 @@ Below you can find the schema of each table along with the datatypes for each fi
 ## Technologies Used
 
 - [Python3](https://www.python.org/)
+    - Used for most of the backgroud functionality of the website.
 
 - [Django](https://palletsprojects.com/p/flask/)
+    - Handles all the views, database queries.
 
-- [Javascript](https://www.javascript.com/)
+- [Javascript/ jQuery](https://www.javascript.com/)
+    - Used for manipulating the DOM and stripe api.
 
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
+    - Custom **CSS3** for styling the website.
 
 - [Bootstrap](https://getbootstrap.com/)
+    - All the websites structure is built using **Bootstrap**
 
 - [Font Awesome](https://fontawesome.com/)
+    - All the icons used in this project are from **Font Awesome**
 
 - [OMDB API](http://www.omdbapi.com/)
+    - Used in the admin panel to fetch data when adding new videos.
 
 - [AWS](https://aws.amazon.com/)
+    - USed for serving images and static files to the user.
 
 - [Heroku](https://www.heroku.com/)
+    - Used to host the website and database.
 
+- [Heroku Postgres](https://www.heroku.com/postgres/)
+    - Used to store all the data on the website.
+    
 
 ## Testing
 
@@ -226,6 +321,12 @@ Below you can find the schema of each table along with the datatypes for each fi
 - Username is case-sensitive. This seems to be built into Django.
 
 ### Automated Testing
+When trying to write some automated testing I was getting a database permission error for my testing database. 
+As I wasn't too sure on how to fix this issue I ommited automated testing for this project.
+
+If i was to do it I would have checked that each view rendered correctly using the response code. I would try
+add/remove videos from various lists that the user has control over to see if they functioned correctly.
+    
 
 ## Deployment
 
