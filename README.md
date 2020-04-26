@@ -101,11 +101,11 @@ Below you can find the schema of each Model along with the datatypes for each fi
 
 **Accounts Models**
 
-|               |  SubPlan                                              |
-|:-------------:|:-----------------------------------------------------:|
-| Fields 	    |       Type       	                                    |
-| plan_name     |  models.CharField(max_length=50) 	                    | 
-| plan_price    |  models.DecimalField(max_digits=5, decimal_places=2)  |
+|                       |  SubPlan                                              |
+|:---------------------:|:-----------------------------------------------------:|
+| Fields                |       Type       	                                    |
+| plan_name             |  models.CharField(max_length=50) 	                    | 
+| plan_price            |  models.DecimalField(max_digits=5, decimal_places=2)  |
 
 
 |                       |  Subscriber                                           |
@@ -121,10 +121,10 @@ Below you can find the schema of each Model along with the datatypes for each fi
 
 **Content Models**
 
-|               |                           Genre                       |
-|:-------------:|:-----------------------------------------------------:|
-| Fields 	    |       Type       	                                    |
-| name          |  models.CharField(max_length=50) 	                    | 
+|                 |                         Genre                          |
+|:---------------:|:------------------------------------------------------:|
+| Fields          |       Type       	                                   |
+| name            |  models.CharField(max_length=50) 	                   | 
 
 
 |                 |                         Video                          |
@@ -184,10 +184,30 @@ Below you can find the schema of each Model along with the datatypes for each fi
 
 
 ## Features
-
+- Users can like/dislike videos
+- Users can add/remove videos from their watch list.
+- Two tier subscription model using stripe.
+- Users can upgrade/downgrade seamlessly.
+- Users can cancel their subscription.
+- Users can search videos by term, genre or tag.
+- If users partially watch videos, the video is added to a watch list, which allows the user to 
+    continue where they left when revisiting that video.
+- Suggested video based on user likes on home page.
+- Suggested videos on the video page based on the the current video being watched.
+- Most popular videos based on views.
+- Featured video on home page can be set or randomly selected on each visit.
+- When adding videos (Admin) video details are grabbed based on the imdb link.
+- Users can reset password.
 
 ### Features left to Implement
-
+- Displaying IMDB rating on each video (either on hover of image or on video page).
+- Custom video player.
+- A more complex algorithm for video suggestions (that takes dislikes into account).
+- Option for users to delete account.
+- Logging in with email.
+- Video stream resolution based on subscription tier (custom video player needed).
+- Grabbing images when adding new videos (Admin)
+- A more refined search app.
 
 ## Technologies Used
 
