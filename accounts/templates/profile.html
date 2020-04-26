@@ -12,26 +12,28 @@
                 <hr>
                 <div class="col-md-12">
                     <div class="col-md-4">
-                        <h4>Customer Details:</h4>
+                        <h4>Customer Details</h4>
                     </div>
                     <div class="col-md-8 offset-md-4">
-                        <p><span class="profile-subheading">Name: </span>{{ user.get_full_name }}</p><hr>
-                        <p><span class="profile-subheading">Username: </span>{{ user.username }}</p><hr>
-                        <p><span class="profile-subheading">Email: </span>{{ user.email }}</p><hr>
-                        <p><span class="profile-subheading">Joined: </span>{{ user.date_joined|date:"d-m-Y" }}</p><hr>
+                        <p><span class="profile-subheading">Name: </span><span class="profile-info">{{ user.get_full_name }}</span></p><hr>
+                        <p><span class="profile-subheading">Username: </span><span class="profile-info">{{ user.username }}</span></p><hr>
+                        <p><span class="profile-subheading">Email: </span><span class="profile-info">{{ user.email }}</span></p><hr>
+                        <p><span class="profile-subheading">Joined: </span><span class="profile-info">{{ user.date_joined|date:"d-m-Y" }}</span></p><hr>
+                        <p><span class="profile-subheading">Password: </span>
+                        <span class="profile-info"><a class="btn btn-primary" href="../password-reset/">Change Password</a></span></p><hr>
                     </div>
                     <hr>
                     <div class="col-md-4">
-                        <h4>Subscription Details:</h4>
+                        <h4>Subscription Details</h4>
                     </div>
                     <div class="col-md-8 offset-md-4">
-                        <p><span class="profile-subheading">Plan: </span>{{ user_plan }}</p><hr>
+                        <p><span class="profile-subheading">Plan: </span><span class="profile-info">{{ user_plan }}</p><hr>
                         {% if next_billing == None %}
-                            <p><span class="profile-subheading">Start Date: </span>N/A</p><hr>
-                            <p><span class="profile-subheading">Next billing date: </span>N/A</p><hr>
+                            <p><span class="profile-subheading">Start Date: </span><span class="profile-info">N/A</p><hr>
+                            <p><span class="profile-subheading">Next billing date: </span><span class="profile-info">N/A</p><hr>
                         {% else %}
-                            <p><span class="profile-subheading">Start Date: </span>{{ sub_start_date|date:"d-m-Y" }}</p><hr>
-                            <p><span class="profile-subheading">Next billing date: </span>{{ next_billing|date:"d-m-Y" }}</p><hr>
+                            <p><span class="profile-subheading">Start Date: </span><span class="profile-info">{{ sub_start_date|date:"d-m-Y" }}</p><hr>
+                            <p><span class="profile-subheading">Next billing date: </span><span class="profile-info">{{ next_billing|date:"d-m-Y" }}</p><hr>
                         {% endif %}
                         {% if user_plan != None %}
                             <a class="btn btn-primary" href="{% url 'plans' %}">Change</a>

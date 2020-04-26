@@ -1,24 +1,34 @@
 /* profile */
-
 #profile{
     background-color: #fff;
     color: #000;
     border-radius: 5px;
-    text-align: justify;
-    margin-top: 8vh;
+    margin-top: 6vh;
 }
 
 .profile-subheading{
-    font-size: 1.3em;
-    margin-right: 5%;
+    font-size: 1em;
+    text-align: left;
+    width: 30%;
 }
 
 .profile-info {
-    padding: 1% 0% 1% 42%;
+    font-size: 0.9em;
+    position: absolute;
+    left: 55%;
+}
+
+.btn.btn-primary, 
+.btn.btn-danger, 
+.btn.btn-secondary{
+    font-size: 0.8em;
+}
+
+h4{
+    margin-bottom: 10%;
 }
 
 /* modal */
-
 .modal{
     color: #000;
 }
@@ -26,4 +36,37 @@
 form {
     margin: 0;
     padding: 0;
+}
+
+@media (min-width: 768px) {
+    #profile{
+        margin-top: 9vh;
+    }
+
+    .profile-subheading{
+        font-size: 1.3em;
+        text-align: left;
+        width: 30%;
+    }
+
+    .profile-info {
+        position: absolute;
+        left: 45%;
+    }
+
+    h4{
+        margin-bottom: 0;
+    }
+
+    .btn.btn-primary, 
+    .btn.btn-danger, 
+    .btn.btn-secondary{
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 992px) {
+    .profile-info {
+        font-size: 1em;
+    }
 }
