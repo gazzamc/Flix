@@ -60,10 +60,10 @@
             <p>Plot: {{ curr_video.description }}</p>
             <p>Tags: 
             {% for tag in tags %}
-                <a href="../search/?tag={{ tag.slug }}">{{ tag.name }}</a>
+                <a href="../search/?tag={{ tag }}">{{ tag.name }}</a>
             {% endfor %}
             </p>
-            <p>Genre: <a href="../search/?genre={{ genre }}">{{ curr_video.genre }}</a></p>
+            <p>Genre: <a href="../search/?genre={{ curr_video.genre }}">{{ curr_video.genre }}</a></p>
         </div>
         <!-- Suggestions/Related Videos -->
         <div class="col-12 col-md-10 offset-md-2 suggested">

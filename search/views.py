@@ -1,6 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from content.models import Video, Genre, Watchlist
-from content.views import get_watchlist, get_likelist, get_dislikelist
+from django.shortcuts import render
+from content.models import Video, Genre
 
 
 def search_view(request):
@@ -8,9 +7,6 @@ def search_view(request):
     term = request.GET.get('q')
     genre = request.GET.get('genre')
     tag = request.GET.get('tag')
-    watch_list = get_watchlist(request)
-    like_list = get_likelist(request)
-    dislike_list = get_dislikelist(request)
     context = {}
 
     if term is not None:
@@ -21,9 +17,6 @@ def search_view(request):
             "videos": videos,
             "search_term": term,
             "result_count": result_count,
-            "watch_list": watch_list,
-            "like_list": like_list,
-            "dislike_list": dislike_list,
         }
     elif genre is not None:
         genre_id = Genre.objects.get(name=genre)
@@ -36,10 +29,16 @@ def search_view(request):
                 "videos": videos,
                 "genre": genre,
                 "result_count": result_count,
-                "watch_list": watch_list,
-                "like_list": like_list,
-                "dislike_list": dislike_list,
             }
+    elif tag is not None:
+        videos = search_by_tag(tag)
+        result_count = len(videos)
+
+        context = {
+            "videos": videos,
+            "tag": tag,
+            "result_count": result_count,
+        }
 
     return render(request, "search.html", context)
 
@@ -53,4 +52,10 @@ def search_by_genre(genre):
 def search_by_term(term):
     """ Get Videos by term """
     videos = Video.objects.filter(title__contains=term)
+    return videos
+
+
+def search_by_tag(tag):
+    """ Get Videos by term """
+    videos = Video.objects.filter(tags__name__in=[tag])
     return videos

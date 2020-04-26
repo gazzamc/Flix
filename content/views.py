@@ -133,7 +133,7 @@ def remove_from_watching_list(request, slug):
             video.delete()
         except Watching.DoesNotExist:
             pass
-  
+
         video = Video.objects.get(slug=slug)
         Watched.objects.get_or_create(
                 item=video,
