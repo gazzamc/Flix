@@ -31,6 +31,7 @@ def content_view(request):
         watched_list = get_watched_list(request)
         watching_list = get_watching_list(request)
         liked_videos = get_likelist(request)
+        popular = get_popular_videos()
         final_video_list = []
 
         # Grab random liked video for suggestion
@@ -57,6 +58,7 @@ def content_view(request):
             "videos": final_video_list,
             "genres": genres,
             "watched_list": watched_list,
+            "most_popular": popular,
             "watching_list": watching_list,
             "liked_video": liked_video,
             "liked_video_list": liked_video_list,
@@ -142,6 +144,13 @@ def add_to_watching_list(request, slug):
             )
 
     return redirect(reverse('index'))
+
+
+def get_popular_videos():
+    """ Get most popular videos """
+    videos = Video.objects.all().order_by("views")[:10]
+
+    return videos
 
 
 @login_required

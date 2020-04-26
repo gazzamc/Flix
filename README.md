@@ -135,6 +135,8 @@ Below you can find the schema of each table along with the datatypes for each fi
 #### Known bugs
 - When clicking the navigation items occasionally the background of the icon turns white.
 - Sometimes `youtube-dl` has an issue retrieving the video, to counteract this I've returned `None` so that only the background image shows.
+- Object-fit doesnt stretch the featured video on Edge. I've yet to find a fix for this.
+- If liking/disliking/watch listing a lot of videos in a short space of time some of them dont register.
 
 ### Automated Testing
 
