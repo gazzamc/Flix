@@ -12,7 +12,6 @@ from collections import Counter
 import random
 
 
-
 @login_required
 def content_view(request):
     """ Display all video content by genre"""
@@ -44,7 +43,7 @@ def content_view(request):
             liked_video = None
             liked_video_list = None
 
-        # Get 20 videos from each category and combine queryset
+        # Get 20 videos from each genre and combine queryset
         for genre in genres:
 
             videos = Video.objects.filter(genre=genre)[:20]
@@ -149,7 +148,7 @@ def add_to_watching_list(request, slug):
 
 def get_popular_videos():
     """ Get most popular videos """
-    videos = Video.objects.all().order_by("views")[:10]
+    videos = Video.objects.all().order_by("-views")[:10]
 
     return videos
 
