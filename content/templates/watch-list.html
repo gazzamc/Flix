@@ -21,7 +21,7 @@
             <div class="col-md-10 text-center">
                 {% for video in videos %}
                     <div class="result-box">
-                        <a href="../{{ video.slug }}"><img src="/media/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
+                        <a href="../{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
                         {% if watch_list != None %}
                             {% if watch_list|video_in_list:video.title %} 
                                 <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>

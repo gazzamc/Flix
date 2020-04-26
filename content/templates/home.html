@@ -158,11 +158,11 @@
                     </div>
                 {% endif %}
             {% endif %}
-            <div class="col-12">
-                <h4>{{ genre }}</h4>
-                <div class="column" id="{{ genre }}">
-                    {% for video in videos %}
-                        {% if video.genre == genre %}
+            {% for video in videos %}
+                {% if video.genre == genre %}
+                    <div class="col-12">
+                        <h4>{{ genre }}</h4>
+                        <div class="column" id="{{ genre }}">
                             <div class="result-box">
                                 <a href="/content/{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small-home" alt="{{ video.slug }}"></a>
                                 {% if watch_list != None %}
@@ -192,12 +192,12 @@
                                     {% endif %}
                                 {% endif %}
                             </div>
-                        {% endif %}
-                    {% endfor %}   
-                    <i class="fas fa-angle-left" style="display: none"></i>
-                    <i class="fas fa-angle-right" style="display: none"></i>
-                </div>
-            </div>
+                            <i class="fas fa-angle-left" style="display: none"></i>
+                            <i class="fas fa-angle-right" style="display: none"></i>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}   
         {% endfor %}
     </div>
 </div>

@@ -1,4 +1,5 @@
 from .models import Genre
+from django.conf import settings
 from content.views import (get_dislikelist, get_likelist,
                            get_watchlist)
 
@@ -12,8 +13,10 @@ def add_global_lists_to_context(request):
         watch_list = get_watchlist(request)
         like_list = get_likelist(request)
         dislike_list = get_dislikelist(request)
+        MEDIA_URL = getattr(settings, "MEDIA_URL")
 
         context = {
+            "MEDIA_URL": MEDIA_URL,
             "genres": genres,
             "watch_list": watch_list,
             "like_list": like_list,

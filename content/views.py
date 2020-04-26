@@ -12,6 +12,7 @@ from collections import Counter
 import random
 
 
+
 @login_required
 def content_view(request):
     """ Display all video content by genre"""

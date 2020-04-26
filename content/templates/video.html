@@ -21,7 +21,7 @@
 <div class="container-fluid" style="background: linear-gradient(
       rgba(0, 0, 0, 0.6),
       rgba(0, 0, 0, 1) 100%
-    ), url('../media/{{ curr_video.image_landscape }}') no-repeat center center fixed; background-size: cover;">
+    ), url('{{ MEDIA_URL }}{{ curr_video.image_landscape }}') no-repeat center center fixed; background-size: cover;">
     <div class="row">
         <div class="col-12 col-md-8 offset-md-2 mt-5"> 
             <video id="video-content" controls autoplay>
@@ -80,7 +80,7 @@
             {% else %}
                 {% for video in videos %}
                     <div class="result-box">
-                        <a href="../content/{{ video.slug }}"><img src="/media/{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
+                        <a href="../content/{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>
                         {% if watch_list != None %}
                             {% if watch_list|video_in_list:video.title %} 
                                 <i class="fas fa-times-circle delete-item-icon" style="display: none;"></i>
