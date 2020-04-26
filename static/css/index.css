@@ -6,8 +6,8 @@
     background-position-x: center;
     background-position-y: center;
     background-attachment: fixed;
-    background-size: 70%;
-    height: 80vh;
+    background-size: 100%;
+    height: 90vh;
     padding: 0;
     margin-top: 1%;
     -webkit-box-shadow: inset 0px 1px 22px 16px rgba(0,0,0,0.46);
@@ -18,33 +18,74 @@
 .jumbotron h1, .jumbotron .lead{
     position: relative;
     padding-left: 10%;
-    top: 20%;
+    top: 16%;
+    left: 11%;
+    width: 20%;
     color: #fff;
     font-size: 6em;
 }
 
 .jumbotron .lead{
-    font-size: 1.5em;
-    width: 30%;
+    font-size: 1em;
+    margin-top: -7%;
+    margin-left: 19%;
+    width: 60%;
 }
 
-.jumbotron form{
-    position: absolute;
-    top: 60vh;
-    bottom: 0;
-    left: 0;
-    right: 5vw;
-    text-align: center;
+@media (min-width: 768px) {
+    .jumbotron{
+        height: 89vh;
+    }
+
+    .jumbotron h1, .jumbotron .lead{
+        top: 35%;
+        left: 27%;
+        width: 20%;
+    }
+
+    .jumbotron .lead{
+        font-size: 1em;
+        margin-top: -3%;
+        margin-left: 8%;
+        width: 60%;
+    }
 }
 
-.jumbotron form .btn{
-    position: relative;
-    margin-top: 1%;
+@media (min-width: 992px) {
+    .jumbotron{
+        height: 88vh;
+    }
+
+    .jumbotron h1, .jumbotron .lead{
+        top: 29%;
+        left: 30%;
+        width: 20%;
+    }
+
+    .jumbotron .lead{
+        font-size: 1em;
+        margin-top: -2%;
+        margin-left: 8%;
+        width: 60%;
+    }
 }
 
-form input#email{
-    height: 4vh;
-    width: 20vw;
-    font-size: 2em;
-    text-align: center;
+@media (min-width: 1200px) {
+    .jumbotron{
+        background-size: 90%;
+        height: 86vh;
+    }
+
+    .jumbotron h1, .jumbotron .lead{
+        top: 25%;
+        left: 30%;
+        width: 20%;
+    }
+
+    .jumbotron .lead{
+        font-size: 1em;
+        margin-top: -1%;
+        margin-left: 8%;
+        width: 60%;
+    }
 }
