@@ -130,13 +130,100 @@ Below you can find the schema of each table along with the datatypes for each fi
 ## Testing
 
 ### Manual Testing
+- Navbar
+    - Logged Out
+        - Clicking the flix branding in the navbar refreshes the page.
+        - Clicking the login page brings you the login view.
+        - Clicking the register page brings you to the register view 
+    - Logged In (No Sub)
+        - Clicking the Flix branding on the navbar bring the user back to the plans page.
+        - Click any of the genres will show results for videos but when trying the click the video the user will be redirected back to plans.
+        - Clicking the search icon expands the search bar and allows the user to search.
+        - Clicking the profile icon brings the user to the profile page.
+        - Clicking the logout icon in the navbar logs the user out and redirects them back to the index page.
+    - Logged In (Active Sub)
+        - Clicking the Flix branding on the navbar brings the user to the home page.
+        - Click any of the genres will show results for videos in that genre.
+        - Clicking the search icon expands the search bar and allows the user to search.
+        - Clicking the profile icon brings the user to the profile page.
+        - Clicking the logout icon in the navbar logs the user out and redirects them back to the index page.
 
+- Index Page
+    - The index page doesnt have any fuctionality a part from the navbar.
+- Login Page
+    - Inputting the wrong username/password results in an error message.
+    - Leaving any of the fields blank gives a HTML error message to fill in the required fields.
+    - Inputting the wrong case for the username also returned an error message.
+    - Clicking the "Reset Password" links brings you to the reset passwork page.
+- Reset Password Page
+    - Clicking the "Reset Password" button without entering an email address gives you an error message.
+    - Entering an email and clicking the button redirects the page to a confirmation screen that the email has been sent.
+    - Clicking the link in the email recieved brings you to a form that asks for a new password and confirmation password. 
+        - If the links invalid you will be giving a message saying so with a link to restart the process.
+        - Entering a common/short password returns an error message.
+        - Completing the form redirects you the completed page with a link to sign-in.
+- Registration Page
+    - Leaving any of the fields blanks gives a HTML5 validation error.
+    - Entering two different password returns "Passwords must match".
+    - Completing the form logs the user in and redirects them to the plans page.
+- Plans
+    - The plans page is shown when the user doesnt have an active subscription. 
+    If they try to access some areas of the site they will be redirected back here.
+    - Clicking any of the subscribe buttons will redirect the user the payment page (with the plan the user clicked selected)
+- Payment Page
+    - Clicking the "Cancel" button brings the user back to the plans page.
+    - Clicking pay without filling in any of the fields shows an error `Could not find payment information`.
+    - Clicking the pay button with just the full name field filled returns the same error.
+    - Clicking pay with the card and full name field filled returns the error "Your card's expiration year is invalid"
+    - Filling in all fields with valid information but the CVV completes the payment *.
+        - This is a bug I've yet to fix, not sure if stripe side or mine.
+    - Filling all payment details and leaving full name empty completes the payment.
+- Profile
+    - Clicking the reset button brings the user to the reset page.
+    - Clicking the change button brings the user to the plan pages where they can "Upgrade" or "Downgrade" their plan.
+    - Clicking cancel bring up a modal confirming the cancellation of your subscription.
+        - Clicking "Yes" cancels your subscription and refreshes the page with the new data.
+        - Clicking "No" or the "X" icon closes the modal.
+- Video Page
+    - When the user clicks a video they will be redirected to the video page. This will autoplay the video and have the video
+    details shown below.
+    - If the video has similar tags to another video it will be shown in the "More like this" section (limited to 3).
+    - If the user clicks the tags they will be redirected the search page with results of that tag.
+    - If the user clicks the genre they will be redirected the search page with results for that genre.
+    - The user can like/dislike and add/remove the video from the watchlist with the icons below the video.
+    - If the user has watched more than 10 seconds of the video it will be added to the "watching list" and 
+    will record the last known position for later viewing.
+    - If the user watched the whole video or will less than 15 seconds left the video will be removed from the watching
+    list and added to the watched list.
+- Home
+    - Clicking the watch now button in the jumbotron will bring the user to the featured videos page.
+    - Scrolling down the page will stop the video playing in the jumbotron and show a play icon.
+    - Clicking the play icon will play the video again.
+    - If the user watched partial videos they will be shown a "Continue Watching" section where they can resume the videos.
+    - If the user liked any video they will be shown a random column of suggestion/similar videos.
+    - By default the page will be populated with videos from all the genres (limited to 20).
+    - On this page the user can do the usual like/dislike and adding/removing videos from the watch list.
+- Watch List
+    - If the user has not added any videos to their watch list they will be shown the message `It's a little lonely in here, Add some videos to your list by pressing the + icon`.
+    - If the user has added videos to their watch list the the video will be shown here.
+        - When hovering over the videos the user will be shown three icons.
+        - Clicking the "X" icon will remove the video from the watch list.
+        - Clicking the like icon will darken the dislike button and add the video to the user likes (resulting in suggested videos)
+        - Clicking the dislike button will darken the like button and add the video to the user dislikes
+- Search page
+    - There are three types of search filters. Genre, tag and search term.
+        - If the user clicked one of the genres in the navabar they will be redirected here and shown videos in the given genre.
+        - If the user clicks the tags under the video in the video page they will be redirected here and shown results of the given tag.
+            - The search box on this page will still search by term and not by tag.
+    - Searching using the icon in the navbar or the search box in this page will show video results with the searhc term used.
+    - The user can do the usual things will the icons shown on the videos if there is results.
 
 #### Known bugs
 - When clicking the navigation items occasionally the background of the icon turns white.
 - Sometimes `youtube-dl` has an issue retrieving the video, to counteract this I've returned `None` so that only the background image shows.
 - Object-fit doesnt stretch the featured video on Edge. I've yet to find a fix for this.
 - If liking/disliking/watch listing a lot of videos in a short space of time some of them dont register.
+- Username is case-sensitive. This seems to be built into Django.
 
 ### Automated Testing
 
