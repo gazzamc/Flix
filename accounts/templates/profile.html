@@ -20,7 +20,7 @@
                         <p><span class="profile-subheading">Email: </span><span class="profile-info">{{ user.email }}</span></p><hr>
                         <p><span class="profile-subheading">Joined: </span><span class="profile-info">{{ user.date_joined|date:"d-m-Y" }}</span></p><hr>
                         <p><span class="profile-subheading">Password: </span>
-                        <span class="profile-info"><a class="btn btn-primary" href="../password-reset/">Change Password</a></span></p><hr>
+                        <span class="profile-info"><a class="btn btn-primary" href="{% url 'password_reset' %}">Change Password</a></span></p><hr>
                     </div>
                     <hr>
                     <div class="col-md-4">
@@ -68,7 +68,6 @@
                         {% csrf_token %}
                         <input class="btn btn-primary" type="submit" value="Yes" name="Yes" />
                     </form>
-                    <!-- <a href="{% url 'cancel-sub' %}" class="btn btn-primary">Cancel</a> -->
                     <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">No</button>
                 </div>
             </div>
