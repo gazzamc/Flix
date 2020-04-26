@@ -2,7 +2,7 @@
     margin-top: 20vh;
     color: #fff;
     border-radius: 5px;
-    min-height: 72vh;
+    min-height: 74vh;
 }
 
 form{
@@ -11,13 +11,20 @@ form{
 }
 
 form .btn.btn-primary{
+    margin-top: 2%;
     background-color: #f9f9f9;
     border: none;
     color: #000;
 }
 
-@media (min-width: 1200px) {
+form p{
+    font-size: 1em;
+    padding: 1%;
+}
+
+@media (min-width: 768px) {
     .container{
-        min-height: 71vh;
+        margin-top: 15vh;
+        min-height: 77vh;
     }
 }
