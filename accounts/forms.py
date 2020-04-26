@@ -14,17 +14,27 @@ class UserLoginForm(forms.Form):
 class UserRegistrationForm(UserCreationForm):
     """Form used to register a new user"""
 
+    first_name = forms.CharField(
+        label="First Name")
+    last_name = forms.CharField(
+        label="Last Name")
     password1 = forms.CharField(
         label="Password",
         widget=forms.PasswordInput)
     password2 = forms.CharField(
         label="Password Confirmation",
         widget=forms.PasswordInput)
-    
+
     class Meta:
         model = User
-        fields = ['email', 'username', 'password1', 'password2']
-    
+        fields = [
+                    'username',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'password1',
+                    'password2']
+
     def clean_email(self):
         email = self.cleaned_data.get('email')
         username = self.cleaned_data.get('username')
@@ -38,8 +48,8 @@ class UserRegistrationForm(UserCreationForm):
 
         if not password1 or not password2:
             raise ValidationError("Please confirm your password")
-        
+
         if password1 != password2:
             raise ValidationError("Passwords must match")
-        
+
         return password2

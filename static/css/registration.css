@@ -1,5 +1,5 @@
 .container{
-    margin-top: 5vh;
+    margin-top: 2vh;
     color: #fff;
     border-radius: 5px;
     min-height: 89vh;
@@ -23,7 +23,7 @@ form p{
 
 @media (min-width: 768px) {
     .container{
-        margin-top: 10vh;
+        margin-top: 4vh;
         min-height: 82vh;
     }
 }

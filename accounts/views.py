@@ -69,13 +69,15 @@ def registration(request):
                                      password=request.POST['password1'])
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered")
+                return redirect(reverse('plans'))
             else:
                 messages.error(request, "Unable to register your account at this time")
     else:
         registration_form = UserRegistrationForm()
+
     return render(request, 'registration.html', {
         "registration_form": registration_form})
+
 
 @login_required
 def user_profile(request):
