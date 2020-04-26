@@ -61,7 +61,7 @@ html {
 /* Opacity */
  .opacityShade {
     position: absolute;
-    height:inherit;
+    height: inherit;
     width: 100%;
     z-index: 1;
     background: linear-gradient(

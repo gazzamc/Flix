@@ -32,47 +32,47 @@ All the video URLs are fetched from youtube using the `youtube-dl` module.
     * [Acknowledgements](#acknowledgements)<br>
 
 ## Demo
-You can try the live version of the API [Here]()<br><br>
+You can try the live version of the API [Here](https://flix-streaming.herokuapp.com/)<br><br>
 <p align="center">
-<img src="" alt="Responsiveness" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/screenshots/responsive.gif" alt="Responsiveness" width="80%">
 </p>
 
 ## UX
 
 #### User Stories
-- As a user I should be like/disliek videos.
+- As a user I should be like/dislike videos.
 <p align="center">
-<img src="" alt="Like/Dislike" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/screenshots/like-dislike.gif" alt="Like/Dislike" width="80%">
 </p>
 
 - As a user I should be able to add videos to a watch list.
 <p align="center">
-<img src="" alt="Watchlist" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/screenshots/watchlist.gif" alt="Watchlist" width="80%">
 </p>
 
 - As a user I should be able to view my profile details.
 <p align="center">
-<img src="" alt="profile">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/screenshots/profile.jpg" alt="profile">
 </p>
 
 - As a user I should be able to change my subscription tier.
 <p align="center">
-<img src="" alt="change sub" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/change-sub.jpg" alt="change sub" width="80%">
 </p>
 
 - As a user I should be able cancel my subscription.
 <p align="center">
-<img src="" alt="cancel" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/cancel.jpg" alt="cancel" width="80%">
 </p>
 
 - As a user I should be able to search for videos.
 <p align="center">
-<img src="" alt="search" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/search.jpg" alt="search" width="80%">
 </p>
 
 - As a user I should be able to filter videos by genre.
 <p align="center">
-<img src="" alt="Filter Genre" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Three/raw/master/genre.jpg" alt="Filter Genre" width="80%">
 </p>
 
 #### Strategy
@@ -100,7 +100,7 @@ The website must be user friendly and easy to navigate in order for the user to 
 Below you can find the schema of each Model along with the datatypes for each field.
 
 **Accounts Models**
-
+#
 |                       |  SubPlan                                              |
 |:---------------------:|:-----------------------------------------------------:|
 | Fields                |       Type       	                                    |
@@ -120,6 +120,7 @@ Below you can find the schema of each Model along with the datatypes for each fi
 
 
 **Content Models**
+#
 
 |                 |                         Genre                          |
 |:---------------:|:------------------------------------------------------:|

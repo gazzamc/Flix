@@ -54,7 +54,7 @@ def content_view(request):
                 # https://stackoverflow.com/questions/38967599/joining-two-querysets-in-django
                 final_video_list = list(chain(videos, final_video_list))
 
-        content = {
+        context = {
             "videos": final_video_list,
             "genres": genres,
             "watched_list": watched_list,
@@ -69,7 +69,7 @@ def content_view(request):
             "video_link": featured_vid.slug,
         }
 
-        return render(request, 'home.html', content)
+        return render(request, 'home.html', context)
     else:
         return redirect(reverse('plans'))
 
@@ -372,7 +372,5 @@ def get_suggested_by_likes(request, num):
 def get_suggested_by_video(video, num):
     """ Return videos based on tags/genre """
     videos = video.tags.similar_objects()[:num]
-
-    print(videos)
 
     return videos
