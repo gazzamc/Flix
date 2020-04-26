@@ -18,7 +18,7 @@
             <div class="col-md-8 offset-md-2 text-center">
                 <h2 class="m-5">Watch List</h2>
             </div>
-            <div class="col-md-10 text-center">
+            <div class="col-md-10 offset-md-1 text-center">
                 {% for video in videos %}
                     <div class="result-box">
                         <a href="../{{ video.slug }}"><img src="{{ MEDIA_URL }}{{ video.image_cover }}" class="img-small" alt="{{ video.slug }}"/></a>

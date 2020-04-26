@@ -234,6 +234,10 @@ html {
 }
 
 @media (min-width: 992px) {
+    .fa-play {
+        right: 30%;
+    }
+
     #most-popular .result-box{
         width: 22%;
     }
@@ -248,6 +252,7 @@ html {
 }
 
 @media (min-width: 1200px) {
+
     .jumbotron .lead{
         width: 40%;
     }
