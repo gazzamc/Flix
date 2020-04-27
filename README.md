@@ -238,6 +238,7 @@ Below you can find the schema of each Model along with the datatypes for each fi
 - Video stream resolution based on subscription tier (custom video player needed).
 - Grabbing images when adding new videos (Admin)
 - A more refined search app.
+- Dynamic loading of results as the user scrolls (to prevent loading all videos at once)
 
 ## Technologies Used
 
