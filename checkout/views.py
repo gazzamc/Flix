@@ -10,6 +10,7 @@ import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
+
 @login_required
 def plans(request):
     """Subscription plans page"""
@@ -43,6 +44,7 @@ def plans(request):
 
     return render(request, 'plans.html', context)
 
+
 @login_required
 def checkout(request):
     """Checkout page"""
@@ -56,8 +58,10 @@ def checkout(request):
         if payment_form.is_valid():
             try:
                 # Retrieve product
-                # Removed create product call due to lack of async support in django 1.11,
-                # the product wasnt being returned before the following code ran,
+                # Removed create product call due to lack of async support
+                # in django 1.11,
+                # the product wasnt being returned before
+                # the following code ran,
                 # causing an error in create plan.
                 product = stripe.Product.list(limit=1)
 
@@ -142,9 +146,9 @@ def checkout(request):
 
                         # Update user to subscribers table
                         Subscriber.objects.filter(pk=customer.pk).update(
-                                    plan=SubPlan.objects.get(plan_name=plan_type),
-                                    subscription_date=startDate,
-                                    subscription_end_date=endDate
+                                plan=SubPlan.objects.get(plan_name=plan_type),
+                                subscription_date=startDate,
+                                subscription_end_date=endDate
                         )
 
                     except Subscriber.DoesNotExist:
@@ -152,12 +156,12 @@ def checkout(request):
 
                         # Add user to subscribers table
                         new_sub = Subscriber.objects.create(
-                                    user=request.user,
-                                    plan=SubPlan.objects.get(plan_name=plan_type),
-                                    stripe_sub_id=subscription.id,
-                                    stripe_cus_id=subscription.customer,
-                                    subscription_date=startDate,
-                                    subscription_end_date=endDate
+                                user=request.user,
+                                plan=SubPlan.objects.get(plan_name=plan_type),
+                                stripe_sub_id=subscription.id,
+                                stripe_cus_id=subscription.customer,
+                                subscription_date=startDate,
+                                subscription_end_date=endDate
                         )
 
                         new_sub.save()
@@ -172,7 +176,9 @@ def checkout(request):
                 messages.error(request, "Your card was declined!")
 
         else:
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(
+                            request,
+                            "We were unable to take a payment with that card!")
     else:
 
         # Get selected plan from session

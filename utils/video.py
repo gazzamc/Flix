@@ -1,3 +1,8 @@
+"""
+    video.py
+    contains function that grabs youtube urls
+"""
+
 import youtube_dl
 
 

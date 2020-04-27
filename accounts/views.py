@@ -10,7 +10,9 @@ from datetime import date
 
 
 def index(request):
-    """ Return the index.html if subscription valid otherwise redirect to plans page"""
+    """
+        Return the index.html if subscription valid
+        otherwise redirect to plans page"""
 
     # Check if user is logged in
     if request.user.is_authenticated:
@@ -23,6 +25,7 @@ def index(request):
             return redirect(reverse('plans'))
     else:
         return render(request, 'index.html')
+
 
 @login_required
 def logout(request):
@@ -38,17 +41,19 @@ def login(request):
         return redirect(reverse('index'))
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
-
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
-                                    password=request.POST['password'])
+                                     password=request.POST['password'])
             messages.success(request, "You have successfully logged in!")
 
             if user:
                 auth.login(user=user, request=request)
                 return redirect(reverse('index'))
             else:
-                login_form.add_error(None, "Your username or password is incorrect")
+                login_form.add_error(
+                                    None,
+                                    "Your username or password is incorrect"
+                                    )
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {'login_form': login_form})
@@ -71,7 +76,9 @@ def registration(request):
                 auth.login(user=user, request=request)
                 return redirect(reverse('plans'))
             else:
-                messages.error(request, "Unable to register your account at this time")
+                messages.error(
+                    request,
+                    "Unable to register your account at this time")
     else:
         registration_form = UserRegistrationForm()
 
