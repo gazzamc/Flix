@@ -85,13 +85,14 @@ The website must be user friendly and easy to navigate in order for the user to 
 
 
 #### Skeleton
-[Landing Wireframe]()<br>
-[Home Wireframe]()<br>
-[Search Wireframe]()<br>
-[Profile Wireframe]()<br>
-[Plans Wireframe]()<br>
-[Payment Wireframe]()<br>
-[Video Page Wireframe]()<br>
+[Landing Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/index.pdf)<br>
+[Home Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/home.pdf)<br>
+[Search Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/search.pdf)<br>
+[Profile Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/profile.pdf)<br>
+[Plans Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/plans.pdf)<br>
+[Payment Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/payment.pdf)<br>
+[Video Page Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/video.pdf)<br>
+[Watch list Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/watch-list.pdf)<br>
 
 #### Surface
 
@@ -347,20 +348,20 @@ As for testing the code, I use `console.log()` when testing javascript/jQuery an
 - If liking/disliking/watch listing a lot of videos in a short space of time some of them dont register.
 - Username is case-sensitive. This seems to be built into Django.
 
-After moving the static and media files over to AWS I had an issue retreiving the global variable `MEDIA_URL` from the settings.py file in my main app.
+After moving the static and media files over to AWS I had an issue retrieving the global variable `MEDIA_URL` from the settings.py file in my main app.
 To overcome this issue and get the images loading from the AWS bucket I had to import the variable from the settings.py file into my custom context processor.
 I'm not sure if I did something wrong in the beginning of the project to prevent this variable from being reachable in my templates but this has seemed to work and the
-images are dispaying.
+images are displaying.
 
 I had issues getting the video to stretch the full width and height of the jumbotron on the home page. I was able to solve this with `object-fit: cover;`. 
 Unfortunately, I discovered this didnt have the same effect in Edge. I've yet to find the solution to this but it covers the whole jumbtron on Chrome and Firefox.
 
 In order to make the columns scrollable in the home page I needed to make the the overflow scroll and make the overflow-y hidden. This worrked perfectly in chrome but
-when I tested this in the other two browsers I could still see the grey scroll bar. Edge was an easy enough fix I add to to set `-ms-overflow-style` to none and in 
+when I tested this in the other two browsers I could still see the grey scroll bar. Edge was an easy enough fix I had to set `-ms-overflow-style` to none and in 
 Firefox I had to set the scrollbar color to transparent (`scrollbar-color: transparent transparent;`).
 
 When creating the custom context processor I never added a check to see if the user was authenticated. This throw an `dictionary update sequence error` when it 
-tried to retrieve lists created by the user. Thankfully it was an easy fix once i figured it out but it took a big of debugging to ge there.
+tried to retrieve lists created by the user. Thankfully it was an easy fix once i figured it out but it took a bit of debugging to ge there.
 
 ### Automated Testing
 When trying to write some automated testing I was getting a database permission error for my testing database. 
