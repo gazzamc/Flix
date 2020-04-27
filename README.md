@@ -32,7 +32,7 @@ All the video URLs are fetched from youtube using the `youtube-dl` module.
     * [Acknowledgements](#acknowledgements)<br>
 
 ## Demo
-You can try the live version of the API [Here](https://flix-streaming.herokuapp.com/)<br><br>
+You can try the live version of the Website [Here](https://flix-streaming.herokuapp.com/)<br><br>
 <p align="center">
 <img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/responsive.gif" alt="Responsiveness" width="80%">
 </p>
@@ -40,7 +40,7 @@ You can try the live version of the API [Here](https://flix-streaming.herokuapp.
 ## UX
 
 #### User Stories
-- As a user I should be like/dislike videos.
+- As a user I should be able to like/dislike videos.
 <p align="center">
 <img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/like-dislike.gif" alt="Like/Dislike" width="80%">
 </p>
@@ -52,27 +52,27 @@ You can try the live version of the API [Here](https://flix-streaming.herokuapp.
 
 - As a user I should be able to view my profile details.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/profile.jpg" alt="profile">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/profile.jpg" alt="profile" width="80%">
 </p>
 
 - As a user I should be able to change my subscription tier.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/change-sub.jpg" alt="change sub" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/change-sub.jpg" alt="change sub" width="80%">
 </p>
 
-- As a user I should be able cancel my subscription.
+- As a user I should be able to cancel my subscription.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/cancel.jpg" alt="cancel" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/screenshots/master/cancel.jpg" alt="cancel" width="80%">
 </p>
 
 - As a user I should be able to search for videos.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/search.jpg" alt="search" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/screenshots/master/search.jpg" alt="search" width="80%">
 </p>
 
 - As a user I should be able to filter videos by genre.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/genre.jpg" alt="Filter Genre" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/screenshots/master/genre.jpg" alt="Filter Genre" width="80%">
 </p>
 
 #### Strategy
