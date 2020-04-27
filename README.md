@@ -85,14 +85,14 @@ The website must be user friendly and easy to navigate in order for the user to 
 
 
 #### Skeleton
-[Landing Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/index.pdf)<br>
-[Home Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/home.pdf)<br>
-[Search Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/search.pdf)<br>
-[Profile Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/profile.pdf)<br>
-[Plans Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/plans.pdf)<br>
-[Payment Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/payment.pdf)<br>
-[Video Page Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/video.pdf)<br>
-[Watch list Wireframe](https://github.com/gazzamc/Milestone-Project-Four/raw/master/wireframes/watch-list.pdf)<br>
+[Landing Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/index.pdf)<br>
+[Home Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/home.pdf)<br>
+[Search Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/search.pdf)<br>
+[Profile Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/profile.pdf)<br>
+[Plans Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/plans.pdf)<br>
+[Payment Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/payment.pdf)<br>
+[Video Page Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/video.pdf)<br>
+[Watch list Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/watch-list.pdf)<br>
 
 #### Surface
 
