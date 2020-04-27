@@ -1,3 +1,11 @@
+/**
+ * stripe.js
+ * 
+ * This file contains the
+ * jQuery for the stripe 
+ * payment page.
+ */
+
 $(function() {
     $("#payment-form").submit(function() {
         var form = this;

@@ -1,3 +1,11 @@
+/**
+ * video.js
+ * 
+ * This file contains
+ * the javscript for 
+ * the video page.
+ */
+
 /* Retrieve Video timestamp and update db */
 var videoCheck;
 var video = document.getElementById("video-content");
@@ -16,11 +24,9 @@ function startVideoCheck(){
 }
 
 function addVideoToWatching(){
-    let fullUrl = baseUrl + "/content/watching/";
-
     /* Get Slug */
-    path = window.location.pathname
-    slug = path.split('/')[2]
+    path = window.location.pathname;
+    slug = path.split('/')[2];
 
     duration = Math.round(video.duration);
     currTime = Math.round(video.currentTime);

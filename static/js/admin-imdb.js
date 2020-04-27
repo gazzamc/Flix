@@ -1,3 +1,10 @@
+/**
+ * admin-imdb.js
+ * 
+ * This script grabs IMDB details
+ * when provided a valid imdb link
+ * using OMDB in the admin panel.
+ */
 $( document ).ready(function() {
 
     /* https://stackoverflow.com/questions/6153047/detect-changed-input-text-box */
@@ -25,6 +32,14 @@ $( document ).ready(function() {
     });
 });
 
+/**
+ * 
+ * @param {String} imdbId
+ * Returns json data
+ * from OMDB API
+ * when passed a valid
+ * IMDB ID
+ */
 function grab_data(imdbId){
     $.get("//omdbapi.com/?apikey=4b524edf&i=" + imdbId, function(data) {
         $("#id_title").val(data.Title);

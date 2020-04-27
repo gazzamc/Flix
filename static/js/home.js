@@ -1,3 +1,11 @@
+/**
+ * home.js
+ * 
+ * This file consists
+ * of all the javascript 
+ * used on the home page
+ * */
+
 $( document ).ready(function() {
     /* If autoplay enabled focus video */
     if(!$("video").paused){
@@ -9,7 +17,7 @@ $( document ).ready(function() {
 
     /* Moves Items when clicking arrow buttons */
     $(".fas").click(function(){
-        let id = $(this).parent().attr('id')
+        let id = $(this).parent().attr('id');
         let curScroll = $('#' + id + ".column").scrollLeft();
 
         if($(this).hasClass("fa-angle-left")){
@@ -42,10 +50,9 @@ $( document ).ready(function() {
             $("nav").addClass("showNavBar");
         }
 
-        /* PIP when scrolling */
-        /* video.trigger('requestPictureInPicture'); */
     });
 });
+
 /**
  * 
  * @param {jQuery Object} item 
@@ -94,7 +101,10 @@ function hideControls(){
 }
 
 /**
+ * 
+ * @param {Boolean} bool 
  * Change opacity of featured video.
+ * 
  */
 function vidInFocus(bool){
     if(bool){
@@ -108,7 +118,8 @@ function vidInFocus(bool){
 }
 
 /**
- * Change opacity of featured video.
+ *  @param {Boolean} bool 
+ * Shows/Hides play button in jumbotron.
  */
 function hidePlayBtn(bool){
     if(bool){
