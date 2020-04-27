@@ -76,12 +76,36 @@ You can try the live version of the Website [Here](https://flix-streaming.heroku
 </p>
 
 #### Strategy
-I wanted to create a content streaming using `Django`, `Python`, `Javascript`. 
+I wanted to create a content streaming website using `Django`, `Python`, `Javascript`. 
 The website must be user friendly and easy to navigate in order for the user to find and watch the content they want.
 
 #### Scope
+The main goal for this website was to make navigation as easy as possible. I think I achieve that and getting to the content you
+want is painless. The overall design of the website is simple but modern looking and thats what I set out to do. The home page
+can look different depending on the users likes, watchlist and the featured content.While the suggestions arent as complex as I 
+wanted I still think I implement enough to allow the user to make the home page their own by liking/disliking content on the website.
 
 #### Structure
+When on the index page the navbar only has the login/register links. 
+The index page consists of only a hero image. I wanted to keep this simple/clean 
+as the theres already a lot going on in the home page.
+
+When logged in and redirected to the home page (Subscriber) the homepage is where the user will be the most by design
+It consists of partially watched videos (if you watched some), suggestions based on likes, most popular videos based on views
+and 20 videos from each genre. The user can like/dislike or add/remove videos by hovering over video images.
+
+The genre, search page are similar in layout and return the videos based on the criteria.
+The watch list displays any videos you have added to your watch lists, if you dont have any it will display some text 
+explaining how to add videos to it.
+
+The profile page shows all the user details, allows the user to change/cancel their subscription and change their password.
+The plans page shows the current plans with some details of each.
+The payment page is simple and straigh to the point, it only consists of the form.
+
+The video pages consists of the video, its landscape image behind it and below that is the video detials. The video
+details consists of tags and genre, which can be clicked to search for similar videos. Under the detials are suggested
+videos based on the current video you're watching.
+
 
 
 #### Skeleton
@@ -95,7 +119,10 @@ The website must be user friendly and easy to navigate in order for the user to 
 [Watch list Wireframe](https://github.com/gazzamc/Milestone-Project-Four/blob/master/wireframes/watch-list.pdf)<br>
 
 #### Surface
-
+For this project I chose to use Black and White as the color scheme. As this website is very content heavy I choose
+to leave the featured video set the mood of the home page. By keeping it to black/white I my theme won't clash 
+with any potential featured content. As for button colors, I choose to use the defaults in some places as it seemed
+appropriate for their actions and would be instantly recognized by the user.
 
 ## Database schema
 Below you can find the schema of each Model along with the datatypes for each field.
@@ -200,6 +227,7 @@ Below you can find the schema of each Model along with the datatypes for each fi
 - Featured video on home page can be set or randomly selected on each visit.
 - When adding videos (Admin) video details are grabbed based on the imdb link.
 - Users can reset password.
+- The navigation bar appears and disappears as the user scrolls
 
 ### Features left to Implement
 - Displaying IMDB rating on each video (either on hover of image or on video page).
