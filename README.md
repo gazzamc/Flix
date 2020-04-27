@@ -403,7 +403,73 @@ add/remove videos from various lists that the user has control over to see if th
 
 #### Heroku Dashboard
 
+1. In the dropdown on the right, click **Create New App**.
+2. On the next screen, enter app name and select server, then click **Create App**.
+3. In the **Overview** page go to the **Deploy** tab.
+4. Scroll down to **Deployment method** and choose **Heroku** (You can also deploy via **Github** here).
+5. Using the git commands below, commit your code/project to **Heroku**:
+```
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
+```
+6. To keep the Heroku branch up to date connect your **Github** repo for auto-deployment.
+7. You can do this by clicking the Github icon and searching for the repo.
+8. Once the repo is connected you should have an option below it called **Automatic deploys**.
+9. To enable this click **Enable Automatic Deploys**.
+
+Once the project is deployed you need to set the **config variables**, 
+you can do this by following the instructions below:
+
+1. In the **Heroku Dashboard** go to **Settings**.
+2. Click **Reveal Config Vars**.
+3. Enter in the variable names and their values
+```
+    SECRET_KEY
+    EMAIL_ADDRESS
+    EMAIL_PASSWORD
+    STRIPE_PUBLISHABLE
+    STRIPE_SECRET
+    * AWS_ACCESS_KEY_ID
+    * AWS_SECRET_ACCESS_KEY
+    DATABASE_URL
+```
+
+ &ast; If you're going to use AWS to host your static/media files you will need to create a bucket and modify
+ the variables within `settings.py`.
+
 #### Locally
+To run the website from your local machine you can clone the project using the below command. 
+You will need to install python3 and all its dependencies found in the requirements.txt file. 
+
+1. Clone the git repository.
+```
+    git clone https://github.com/gazzamc/Milestone-Project-Four.git
+```
+2. Run the following commands to create the database:
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+4. Create env.py file in the project directory and enter in the values for the following variables:
+```
+os.environ.setdefault("SECRET_KEY", "your-secret-key")
+os.environ.setdefault("EMAIL_ADDRESS", "your-email")
+os.environ.setdefault("EMAIL_PASSWORD", "your-email-password")
+os.environ.setdefault("STRIPE_PUBLISHABLE", "your-stripe-test-key")
+os.environ.setdefault("STRIPE_SECRET", "your-stripe-secret-key")
+os.environ.setdefault("AWS_ACCESS_KEY_ID", "your-aws-key")
+os.environ.setdefault("AWS_SECRET_ACCESS_KEY", "your-secret-key")
+# If you dont supply the db below django will create a local sqlite db
+os.environ.setdefault("DATABASE_URL", "optional-remote-database")
+```
+
+4. Add localhost to settings.py:
+
+5. Navigate to the cloned folder via the terminal and enter:
+```
+python3 manage.py runserver $IP:$PORT
+```
 
 ## Credits
 
