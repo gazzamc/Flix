@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block page_title %}404{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}" type="text/css">
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6 offset-lg-3 mt-5 text-center">
+            <h2 class="mb-5">404 Page Not Found</h2>
+            <p>{{ random_quote }}</p>
+            <p>The movies are a, <a href="{% url 'index' %}">that way!</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

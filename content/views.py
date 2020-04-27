@@ -372,5 +372,20 @@ def get_suggested_by_likes(request, num):
 def get_suggested_by_video(video, num):
     """ Return videos based on tags/genre """
     videos = video.tags.similar_objects()[:num]
-
     return videos
+
+
+def get_random_quote():
+    """ Get random qoute for 404 page """
+    quotes = [
+        "\"Houston, we have a problem.\" - Apollo 13",
+        "\"My precious.\" - The Lord of the Rings: The Two Towers",
+        "\"Say 'hello' to my little friend!\" - Scarface",
+        "\"E.T. phone home.\" - E.T. the Extra-Terrestrial",
+        "\"Go ahead, make my day.\" - Sudden Impact",
+        "\"Toto, I've a feeling we're \
+            not in Kansas anymore.\" - The Wizard of Oz",
+        "\"These aren't the droids you're looking for\" - Star Wars"
+    ]
+
+    return random.choice(quotes)
