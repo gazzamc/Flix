@@ -62,17 +62,17 @@ You can try the live version of the Website [Here](https://flix-streaming.heroku
 
 - As a user I should be able to cancel my subscription.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/screenshots/master/cancel.jpg" alt="cancel" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/cancel.jpg" alt="cancel" width="80%">
 </p>
 
 - As a user I should be able to search for videos.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/screenshots/master/search.jpg" alt="search" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/search.jpg" alt="search" width="80%">
 </p>
 
 - As a user I should be able to filter videos by genre.
 <p align="center">
-<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/screenshots/master/genre.jpg" alt="Filter Genre" width="80%">
+<img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/genre.jpg" alt="Filter Genre" width="80%">
 </p>
 
 #### Strategy
@@ -244,6 +244,12 @@ Below you can find the schema of each Model along with the datatypes for each fi
     
 
 ## Testing
+The website was tested using Edge, Firefox and Chrome. As I was developing the website I tested it using chrome dev tools. 
+Once I had a section the way I wanted it I would then test it using the other browsers and the device emulation. I used media queries to
+make the website responsive across multiple devices (using chrome dev tools). I mainly stuck with bootstrap breakpoints when tweaking
+the website.
+
+As for testing the code, I use `console.log()` when testing javascript/jQuery and `print()` when testing python.
 
 ### Manual Testing
 - Navbar
@@ -341,9 +347,24 @@ Below you can find the schema of each Model along with the datatypes for each fi
 - If liking/disliking/watch listing a lot of videos in a short space of time some of them dont register.
 - Username is case-sensitive. This seems to be built into Django.
 
+After moving the static and media files over to AWS I had an issue retreiving the global variable `MEDIA_URL` from the settings.py file in my main app.
+To overcome this issue and get the images loading from the AWS bucket I had to import the variable from the settings.py file into my custom context processor.
+I'm not sure if I did something wrong in the beginning of the project to prevent this variable from being reachable in my templates but this has seemed to work and the
+images are dispaying.
+
+I had issues getting the video to stretch the full width and height of the jumbotron on the home page. I was able to solve this with `object-fit: cover;`. 
+Unfortunately, I discovered this didnt have the same effect in Edge. I've yet to find the solution to this but it covers the whole jumbtron on Chrome and Firefox.
+
+In order to make the columns scrollable in the home page I needed to make the the overflow scroll and make the overflow-y hidden. This worrked perfectly in chrome but
+when I tested this in the other two browsers I could still see the grey scroll bar. Edge was an easy enough fix I add to to set `-ms-overflow-style` to none and in 
+Firefox I had to set the scrollbar color to transparent (`scrollbar-color: transparent transparent;`).
+
+When creating the custom context processor I never added a check to see if the user was authenticated. This throw an `dictionary update sequence error` when it 
+tried to retrieve lists created by the user. Thankfully it was an easy fix once i figured it out but it took a big of debugging to ge there.
+
 ### Automated Testing
 When trying to write some automated testing I was getting a database permission error for my testing database. 
-As I wasn't too sure on how to fix this issue I ommited automated testing for this project.
+As I wasn't too sure on how to fix this issue I omited automated testing for this project.
 
 If i was to do it I would have checked that each view rendered correctly using the response code. I would try
 add/remove videos from various lists that the user has control over to see if they functioned correctly.
