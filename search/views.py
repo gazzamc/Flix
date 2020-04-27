@@ -51,7 +51,7 @@ def search_by_genre(genre):
 
 def search_by_term(term):
     """ Get Videos by term """
-    videos = Video.objects.filter(title__contains=term)
+    videos = Video.objects.filter(title__icontains=term)
     return videos
 
 

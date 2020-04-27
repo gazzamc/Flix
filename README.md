@@ -376,7 +376,6 @@ As for testing the code, I use `console.log()` when testing javascript/jQuery an
 - Object-fit doesnt stretch the featured video on Edge. I've yet to find a fix for this.
 - If liking/disliking/watch listing a lot of videos in a short space of time some of them dont register.
 - Username is case-sensitive. This seems to be built into Django.
-- Search results are case sensitive, not sure if its related to django filter method.
 
 After moving the static and media files over to AWS I had an issue retrieving the global variable `MEDIA_URL` from the settings.py file in my main app.
 To overcome this issue and get the images loading from the AWS bucket I had to import the variable from the settings.py file into my custom context processor.

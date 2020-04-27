@@ -184,3 +184,6 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.EmailAuth',
 ]
+
+# Taggit
+TAGGIT_CASE_INSENSITIVE = True
