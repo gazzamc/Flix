@@ -33,6 +33,11 @@ All the video URLs are fetched from youtube using the `youtube-dl` module.
 
 ## Demo
 You can try the live version of the Website [Here](https://flix-streaming.herokuapp.com/)<br><br>
+**Credentials:**
+   ```
+   Username: demo
+   Password: demopassword123
+   ```
 <p align="center">
 <img src="https://github.com/gazzamc/Milestone-Project-Four/raw/master/screenshots/responsive.gif" alt="Responsiveness" width="80%">
 </p>
